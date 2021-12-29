@@ -1,0 +1,41 @@
+
+.signIn{
+    margin-top: 50px;
+
+}
+
+.signIn input{
+    width: 100%;
+    max-width: 590px;
+    padding: 10px 0 10px 10px;
+    font-size: 17px;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+}
+
+.signIn .email{
+    margin-bottom: 20px;
+}
+
+.signIn .password{
+
+    margin-bottom: 20px;
+}
+
+.inputEmail{
+margin-top: 10px;
+}
+
+.inputPassword{
+    margin-top: 10px;
+}
+
+.signButton{
+    color: #fff;
+    background: #3264f5;
+    border-radius:5px;
+    border: 1px solid #3264f5;
+    width: 100%;
+    padding: 10px;
+    font-size: 17px;
+}
