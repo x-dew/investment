@@ -1,7 +1,9 @@
 import React from "react";
+import { Routes, Route, Link } from "react-router-dom";
 import Img from './../imgInvestvent/logoRegister.png'
 import SignIn from "./SignIn/SignIn";
 import './register.css'
+import SignUp from "./SignUp/SignUp";
 
 const Register = ({color}) => {
 
@@ -11,14 +13,11 @@ const Register = ({color}) => {
             <div className={color === 0 ? 'registerData' : 'registerData registerDataColor'}>
                 <h1>Войти</h1>
                 <form>
-                    <SignIn/>
-                    <p className="text-center">
-                        <small className="registerСhoose">
-                            Don't have an account yet? <a href="#">Sign up</a>.
-                        </small>
-                    </p>
+                    <Routes>
+                        <Route path="signIn" element={<SignIn />} />
+                        <Route path="signUp" element={<SignUp />} />
+                    </Routes>
                 </form>
-
             </div>
         </div>
     )
