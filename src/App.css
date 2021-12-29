@@ -7,7 +7,7 @@
 
 .logo{
     padding-left: 100px;
-    border-bottom: 2px solid rgba(88,88,88,.12);
+
 }
 
 .imgLogo{
@@ -20,3 +20,83 @@
     max-width: 370px;
     margin-bottom: 27px;
 }
+
+
+.logotype{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid rgba(88,88,88,.12);
+}
+
+.logotype svg{
+    margin-right: 50px;
+}
+
+
+.imgLogo{
+    animation-name: rotation;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes rotation {
+    0% {
+        transform:rotateY(0deg);
+    }
+    100% {
+        transform:rotateY(360deg);
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .logo{
+        padding-left: 0;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .imgLogoInvest{
+        max-width: 263px;
+        margin-bottom: 17px;
+    }
+
+    .logotype svg {
+        margin-right: 20px;
+    }
+}
+
+@media screen and (max-width: 490px){
+    .imgLogo{
+        width: 100%;
+        max-width: 97px;
+    }
+}
+
+@media screen and (max-width: 430px){
+    .imgLogoInvest{
+        max-width: 200px;
+    }
+
+    .imgLogo{
+        width: 100%;
+        max-width: 77px;
+    }
+}
+
+@media screen and (max-width: 360px){
+
+    .imgLogoInvest{
+        max-width: 180px;
+    }
+
+    .imgLogo{
+        width: 100%;
+        max-width: 57px;
+    }
+
+}
+
+
+

@@ -3,13 +3,13 @@ import Img from './../imgInvestvent/logoRegister.png'
 import SignIn from "./SignIn/SignIn";
 import './register.css'
 
-const Register = () => {
+const Register = ({color}) => {
+
     return (
         <div className='register'>
-            <img src={Img} alt=""/>
-            <div className='registerData'>
+            <img className='registerImg' src={Img} alt=""/>
+            <div className={color === 0 ? 'registerData' : 'registerData registerDataColor'}>
                 <h1>Войти</h1>
-                <p>Бесплатный доступ к нашей панели управления.</p>
                 <form>
                     <SignIn/>
                     <p className="text-center">
