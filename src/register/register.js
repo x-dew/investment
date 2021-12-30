@@ -4,14 +4,14 @@ import Img from './../imgInvestvent/logoRegister.png'
 import SignIn from "./SignIn/SignIn";
 import './register.css'
 import SignUp from "./SignUp/SignUp";
-import {signUp, signIn, reduce} from "./reduce/reduce";
+import {signUpData, signInData, reduce} from "./reduce/reduce";
 
 
 
 const Register = ({color}) => {
 
-    const [signUpReduce, dispatchSignUp] = useReducer(reduce, signUp)
-    const [signInReduce,dispatchSignIn] = useReducer(reduce,signIn)
+    const [signUpReduce, dispatchSignUp] = useReducer(reduce, signUpData)
+    const [signInReduce,dispatchSignIn] = useReducer(reduce,signInData)
 
 
 
@@ -25,7 +25,7 @@ const Register = ({color}) => {
                             signInReduce={signInReduce}
                             dispatchSignIn={dispatchSignIn}
                         />}/>
-                        <Route path="signUp" element={<SignUp
+                        <Route path="register" element={<SignUp
                             signUpReduce={signUpReduce}
                             dispatchSignUp={dispatchSignUp}/>}/>
                     </Routes>

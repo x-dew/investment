@@ -1,12 +1,12 @@
 import React from "react";
 
- export const signUp = {
+ export const signUpData = {
     youName: '',
     youEmail: '',
     youPassword: ''
 }
 
-export const signIn = {
+export const signInData = {
     youEmail: '',
     youPassword: ''
 }

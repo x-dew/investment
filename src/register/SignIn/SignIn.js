@@ -47,7 +47,7 @@ const SignIn = ({signInReduce,dispatchSignIn}) => {
                 </button>
             <p className="text-center">
                 <small className="registerСhoose">
-                    Don't have an account yet? <Link to="/signUp">Sign up</Link>.
+                    Don't have an account yet? <Link to="/register">Sign up</Link>.
                 </small>
             </p>
         </div>
