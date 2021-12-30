@@ -28,9 +28,6 @@
     color: white;
 }
 
-.registerData h1 {
-    text-align: center;
-}
 
 .registerData p {
     text-align: center;
@@ -53,7 +50,7 @@
     }
 }
 
-@media screen and (max-width: 1450px) {
+@media screen and (max-width: 1495px) {
     .registerImg {
         max-width: 800px;
     }

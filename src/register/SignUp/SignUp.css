@@ -1,10 +1,24 @@
 
-.signUp{
-    margin-top: 50px;
-
+.signUp h1 {
+    margin-bottom: 50px;
+    text-align: center;
 }
 
-.signUp input{
+.chooseCategory {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 40px;
+}
+
+.chooseBtn {
+    background: #F4F7F8;
+    border-radius: 5px;
+    padding: 20px 60px;
+    border: 1px solid #e0e0e0;
+}
+
+
+.signUp input {
     width: 100%;
     max-width: calc(100% - 10px);
     padding: 15px 0 15px 10px;
@@ -14,15 +28,34 @@
     box-shadow: -2px 0px 0px 0px #3264f5;
 }
 
-.signUp .name{
+.signUp button:disabled {
+    background: rgba(239, 239, 239, 0.3);
+    border-color: rgba(239, 239, 239, 0.3);
+    color: #b6b7b9;
+}
+
+.signUp input:focus-visible {
+    outline: none;
+}
+
+.signUp .name {
     margin-bottom: 20px;
 }
 
-.signUp .email{
+.signUp .email {
     margin-bottom: 20px;
 }
 
-.signUp .password{
+.signUp .confirmPassword {
+    margin-bottom: 20px;
+}
+
+
+.signInputEmail {
+    border-radius: 5px 0 0 5px !important;
+}
+
+.signUp .password {
     margin-bottom: 20px;
 }
 
@@ -30,12 +63,149 @@
     margin-top: 10px;
 }
 
-.signButton{
+.signButton {
     color: #fff;
     background: #3264f5;
-    border-radius:5px;
+    border-radius: 5px;
     border: 1px solid #3264f5;
     width: 100%;
     padding: 15px;
     font-size: 17px;
+}
+
+.signButton:hover {
+    cursor: pointer;
+}
+
+.chooseBtnAction{
+    background: linear-gradient(
+            260.79deg, #262626 -15.88%, #0243ff 121.51%);
+    color: white;
+}
+
+.inputEmail {
+    display: flex;
+}
+
+.inputEmailBtn {
+    color: #fff;
+    background: #3264f5;
+    border-radius: 0 5px 5px 0;
+    border: 1px solid #3264f5;
+    width: 100%;
+    max-width: 150px;
+    padding: 15px;
+    font-size: 17px;
+}
+
+.registerAgreement {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.registerAgreement input {
+    width: auto;
+    box-shadow: none;
+}
+
+.registerAgreement label{
+    width: 100%;
+}
+
+.registerAgreement input[type="checkbox" i] {
+    width: 43px !important;
+    height: 27px ;
+    margin-right: 20px;
+}
+
+.registerAgreement a {
+    color: #3264f5;
+    text-decoration: none;
+    border-bottom: 1px solid #3264f5;
+    font-weight: 600;
+
+}
+
+.registerAgreement span {
+    color: #3264f5;
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+@media screen and (max-width: 1305px) {
+    .chooseBtn {
+        padding: 15px 40px;
+    }
+
+    .inputEmailBtn {
+        max-width: 109px;
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .chooseBtn {
+        padding: 20px 60px;
+    }
+
+    .inputEmailBtn {
+        max-width: 150px;
+        font-size: 17px;
+    }
+
+}
+
+@media screen and (max-width: 700px) {
+    .registerAgreement {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 485px) {
+    .chooseBtn {
+        padding: 15px 40px;
+    }
+
+    .inputEmailBtn {
+        max-width: 109px;
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+
+    .inputEmail {
+        display: block;
+    }
+
+    .inputEmailBtn {
+        max-width: initial;
+        font-size: 13px;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+
+    .signInputEmail {
+        border-radius: 5px !important;
+    }
+
+    .chooseCategory {
+        display: block;
+    }
+
+    .chooseInvestor {
+        margin-bottom: 20px;
+    }
+
+    .chooseBtn {
+        width: 100%;
+    }
+
+    .signUp h1 {
+        margin-bottom: 30px;
+        text-align: center;
+        font-size: 20px;
+    }
 }

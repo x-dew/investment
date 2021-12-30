@@ -1,7 +1,7 @@
 
-.signIn{
-    margin-top: 50px;
-
+.signIn h1{
+    margin-bottom: 50px;
+    text-align: center;
 }
 
 .signIn input{
@@ -12,6 +12,10 @@
     border-radius: 5px;
     border: 1px solid #e0e0e0;
     box-shadow: -2px 0px 0px 0px #3264f5;
+}
+
+.signIn input:focus-visible{
+    outline:none;
 }
 
 .signIn .email{

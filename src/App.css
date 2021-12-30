@@ -33,6 +33,10 @@
     margin-right: 50px;
 }
 
+.logotype svg:hover{
+    cursor: pointer;
+}
+
 
 .imgLogo{
     animation-name: rotation;
@@ -50,6 +54,12 @@
     }
 }
 
+@media screen and (max-width: 1200px){
+    .logotype{
+        margin-bottom: 50px;
+    }
+}
+
 @media screen and (max-width: 800px) {
     .logo{
         padding-left: 0;
@@ -60,6 +70,10 @@
     .imgLogoInvest{
         max-width: 263px;
         margin-bottom: 17px;
+    }
+
+    .logotype{
+        margin-bottom: 0;
     }
 
     .logotype svg {
