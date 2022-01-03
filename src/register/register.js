@@ -13,25 +13,23 @@ const Register = ({color}) => {
     const [signUpReduce, dispatchSignUp] = useReducer(reduce, signUpData)
     const [signInReduce,dispatchSignIn] = useReducer(reduce,signInData)
 
-    console.log('register')
+
 
     return (
         <div className='register'>
             <img className='registerImg' src={Img} alt=""/>
             <div className={color === 0 ? 'registerData' : 'registerData registerDataColor'}>
-                <form>
-                    <Routes>
-                        <Route path="/"
-                               element={<SignIn
-                            signInReduce={signInReduce}
-                            dispatchSignIn={dispatchSignIn}
-                        />}/>
-                        <Route path="register"
-                               element={<SignUp
-                            signUpReduce={signUpReduce}
-                            dispatchSignUp={dispatchSignUp}/>}/>
-                    </Routes>
-                </form>
+                <Routes>
+                    <Route path="/"
+                           element={<SignIn
+                        signInReduce={signInReduce}
+                        dispatchSignIn={dispatchSignIn}
+                    />}/>
+                    <Route path="register"
+                           element={<SignUp
+                        signUpReduce={signUpReduce}
+                        dispatchSignUp={dispatchSignUp}/>}/>
+                </Routes>
             </div>
         </div>
     )

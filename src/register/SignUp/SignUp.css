@@ -14,7 +14,7 @@
     background: #F4F7F8;
     border-radius: 5px;
     padding: 20px 60px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid red;
 }
 
 
@@ -81,6 +81,7 @@
     background: linear-gradient(
             260.79deg, #262626 -15.88%, #0243ff 121.51%);
     color: white;
+    border: 1px solid white;
 }
 
 .inputEmail {
@@ -133,6 +134,9 @@
     font-weight: 600;
     margin-left: 5px;
 }
+
+
+
 
 @media screen and (max-width: 1305px) {
     .chooseBtn {
