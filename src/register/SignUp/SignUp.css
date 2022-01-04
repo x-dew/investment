@@ -48,6 +48,13 @@
 
 .signUp .confirmPassword {
     margin-bottom: 20px;
+    transition: 0.5s;
+    display:none;
+}
+
+.confirmPasswordActive{
+    display:block!important;
+    transition: 0.5s;
 }
 
 

@@ -15,11 +15,11 @@ const SignUp = ({dispatchSignUp, signUpReduce}) => {
 
     const [checkbox, setCheckbox] = useState(true)
     const [chooseCategory, setChooseCategory] = useState('')
+    const [inputPassword,setInputPassword] = useState(null)
 
 
     {
-        console.log(signUpReduce.youEmail === /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,8}$/i)
-        console.log(signUpReduce.youPassword === /^\d[\d\(\)\ -]{4,14}\d$/ )
+        console.log()
     }
 
     const confirm = () => {
@@ -72,13 +72,14 @@ const SignUp = ({dispatchSignUp, signUpReduce}) => {
                         className="signInput signInputEmail"
                         placeholder="name@yourdomain.com"/>
                     <button
-                        disabled={checkbox === true}
+                        disabled={!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,8}$/i.test(signUpReduce.youEmail)}
+                        onClick={()=>{setInputPassword(1)}}
                         className='inputEmailBtn'>Подтвердить
                     </button>
                 </div>
             </div>
             <div
-                style={{display: 'none'}}
+                style={inputPassword === null  ? {display: 'none'} : {display: 'block'}}
                 className='confirmPassword'>
                 <label className="">Пароль</label>
                 <div className="inputPassword inputTop">
