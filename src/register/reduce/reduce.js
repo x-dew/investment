@@ -1,9 +1,10 @@
 import React from "react";
 
 export const signUpData = {
-    youName: '',
-    youEmail: '',
-    youPassword: ''
+    name: '',
+    email: '',
+    email_code: '',
+    password: '56555c'
 }
 
 export const signInData = {

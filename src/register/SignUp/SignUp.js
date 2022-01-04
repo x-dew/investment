@@ -1,7 +1,8 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import './SignUp.css'
 import {Link} from "react-router-dom";
-import {logDOM} from "@testing-library/react";
+import axios from "axios";
+
 
 const SignUp = ({dispatchSignUp, signUpReduce}) => {
     const register = (e) => {
@@ -15,20 +16,47 @@ const SignUp = ({dispatchSignUp, signUpReduce}) => {
 
     const [checkbox, setCheckbox] = useState(true)
     const [chooseCategory, setChooseCategory] = useState('')
-    const [inputPassword,setInputPassword] = useState(null)
+    const [confirmPassword, setConfirmPassword] = useState(null)
 
-
-    {
-        console.log()
-    }
 
     const confirm = () => {
         if (checkbox === false) {
             setCheckbox(true)
+
         } else {
             setCheckbox(false)
         }
     }
+
+
+    const inputPassword = () => {
+        axios.post('https://api.investonline.su/api/v1/confirmations/send/email', {
+            email: signUpReduce.email,
+            type: 'register_request'
+        }).then((response) => {
+                console.log(response)
+            }
+        ).catch((error) => {
+            console.log(error);
+        });
+    }
+
+
+
+    const confirmFun = (e) =>{
+            axios.post('https://api.investonline.su/api/v1/confirmations/check/email', {
+                email: signUpReduce.email,
+                code: e.target.value,
+                type: 'register_request'
+            }).then((response) => {
+                setConfirmPassword(null)
+                }
+            ).catch((error) => {
+                console.log(error);
+            });
+
+    }
+
 
     return (
         <div className='signUp'>
@@ -64,31 +92,35 @@ const SignUp = ({dispatchSignUp, signUpReduce}) => {
                         onChange={(e) => {
                             register(e)
                         }}
-                        onClick={() => {
-                            console.log('click')
-                        }}
-                        name='youEmail'
+                        name='email'
                         type="email"
                         className="signInput signInputEmail"
                         placeholder="name@yourdomain.com"/>
                     <button
-                        disabled={!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,8}$/i.test(signUpReduce.youEmail)}
-                        onClick={()=>{setInputPassword(1)}}
+                        disabled={!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,8}$/i.test(signUpReduce.email)}
+                        onClick={() => {
+                            inputPassword()
+                            setConfirmPassword(1)
+                        }}
                         className='inputEmailBtn'>Подтвердить
                     </button>
                 </div>
             </div>
             <div
-                style={inputPassword === null  ? {display: 'none'} : {display: 'block'}}
+                style={confirmPassword === null ? {display: 'none'} : {display: 'block'}}
                 className='confirmPassword'>
-                <label className="">Пароль</label>
+                <label className="">Код потверждения</label>
                 <div className="inputPassword inputTop">
                     <input
                         onChange={(e) => {
                             register(e)
+                            if (e.target.value.length === 4){
+                                confirmFun(e)
+                            }
+
                         }}
-                        name='confirmPassword'
-                        type="password"
+                        name='email_code'
+                        type="text"
                         className="signInput"
                         placeholder="Подтвердить пароль"/>
                 </div>
@@ -101,7 +133,7 @@ const SignUp = ({dispatchSignUp, signUpReduce}) => {
                         onChange={(e) => {
                             register(e)
                         }}
-                        name='youPassword'
+                        name='password'
                         type="password"
                         className="signInput"
                         placeholder="Введите ваш пароль"/>
