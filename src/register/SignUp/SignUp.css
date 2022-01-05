@@ -88,6 +88,11 @@
     font-size: 17px;
 }
 
+.signButtonLink{
+    color: #fff;
+    text-decoration: none;
+}
+
 .signButton:hover {
     cursor: pointer;
 }

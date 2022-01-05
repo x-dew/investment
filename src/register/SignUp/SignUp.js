@@ -132,11 +132,11 @@ const SignUp = ({dispatchSignUp, signUpReduce}) => {
             </div>
             <div className='password'>
                 <label className="">Пароль</label>
-                <div className={checkCode === null ?'inputPasswordDisabled inputTop' :"inputPassword inputTop"}>
+                <div className={checkCode === null ? 'inputPasswordDisabled inputTop' : "inputPassword inputTop"}>
                     <input
                         disabled={checkCode === null}
                         onChange={(e) => {
-                            if (/(?=.*?["a-zA-Z-0-9])/.test(e.nativeEvent.data)){
+                            if (/(?=.*?["a-zA-Z-0-9])/.test(e.nativeEvent.data)) {
                                 register(e)
                             }
                         }}
@@ -149,29 +149,33 @@ const SignUp = ({dispatchSignUp, signUpReduce}) => {
             </div>
             {
                 checkCode === 1 ?
-                <div className='availableSymbols'>
-                    <div className='separationSymbol'>
-                        <div className='symbols'>
-                            <div className={/(?=.*?[A-Z])/.test(signUpReduce.password) === true ?'availableSymbolsRight': 'availableSymbolsError'}> </div>
-                            <p>одна прописная буква</p>
+                    <div className='availableSymbols'>
+                        <div className='separationSymbol'>
+                            <div className='symbols'>
+                                <div
+                                    className={/(?=.*?[A-Z])/.test(signUpReduce.password) === true ? 'availableSymbolsRight' : 'availableSymbolsError'}></div>
+                                <p>одна прописная буква</p>
+                            </div>
+                            <div className='symbols'>
+                                <div
+                                    className={/(?=.*?[a-z])/.test(signUpReduce.password) === true ? 'availableSymbolsRight' : 'availableSymbolsError'}></div>
+                                <p>одна строчная буква</p>
+                            </div>
                         </div>
-                        <div className='symbols'>
-                            <div className={/(?=.*?[a-z])/.test(signUpReduce.password) === true ?'availableSymbolsRight': 'availableSymbolsError'}> </div>
-                            <p>одна строчная буква</p>
+                        <div className='separationSymbol'>
+                            <div className='symbols'>
+                                <div
+                                    className={/.{8,}/.test(signUpReduce.password) === true ? 'availableSymbolsRight' : 'availableSymbolsError'}></div>
+                                <p>не менее 8 символов</p>
+                            </div>
+                            <div className='symbols'>
+                                <div
+                                    className={/(?=.*?[0-9])/.test(signUpReduce.password) === true ? 'availableSymbolsRight' : 'availableSymbolsError'}></div>
+                                <p>одна цифра</p>
+                            </div>
                         </div>
-                    </div>
-                    <div className='separationSymbol'>
-                        <div className='symbols'>
-                            <div className={/.{8,}/.test(signUpReduce.password) === true ?'availableSymbolsRight': 'availableSymbolsError'}> </div>
-                            <p>не менее 8 символов</p>
-                        </div>
-                        <div className='symbols'>
-                            <div className={/(?=.*?[0-9])/.test(signUpReduce.password) === true ?'availableSymbolsRight': 'availableSymbolsError'}> </div>
-                            <p>одна цифра</p>
-                        </div>
-                    </div>
 
-                </div> : ''
+                    </div> : ''
             }
             <div className='registerAgreement'>
                 <input
@@ -185,12 +189,13 @@ const SignUp = ({dispatchSignUp, signUpReduce}) => {
                 disabled={checkbox === false}
                 className="signButton"
             >
-                Продолжить
+                <Link className="signButtonLink" to="registerPhone">Продолжить</Link>
+
             </button>
             <p className="text-center">
-                <small className="registerСhoose">
-                    Already have an account? <Link to="/">Login in</Link>.
-                </small>
+                <span className="registerСhoose">
+                    Already have an account? <Link to="registerPhone">Login in</Link>.
+                </span>
             </p>
         </div>
     )
