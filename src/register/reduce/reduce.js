@@ -4,7 +4,7 @@ export const signUpData = {
     name: '',
     email: '',
     email_code: '',
-    password: '56555c'
+    password: ''
 }
 
 export const signInData = {

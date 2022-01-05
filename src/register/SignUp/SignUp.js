@@ -14,10 +14,10 @@ const SignUp = ({dispatchSignUp, signUpReduce}) => {
         })
     }
 
-    const [checkbox, setCheckbox] = useState(true)
+    const [checkbox, setCheckbox] = useState(false)
     const [chooseCategory, setChooseCategory] = useState('')
     const [confirmPassword, setConfirmPassword] = useState(null)
-
+    const [checkCode, setCheckCode] = useState(null)
 
     const confirm = () => {
         if (checkbox === false) {
@@ -27,7 +27,6 @@ const SignUp = ({dispatchSignUp, signUpReduce}) => {
             setCheckbox(false)
         }
     }
-
 
     const inputPassword = () => {
         axios.post('https://api.investonline.su/api/v1/confirmations/send/email', {
@@ -42,18 +41,19 @@ const SignUp = ({dispatchSignUp, signUpReduce}) => {
     }
 
 
-
-    const confirmFun = (e) =>{
-            axios.post('https://api.investonline.su/api/v1/confirmations/check/email', {
-                email: signUpReduce.email,
-                code: e.target.value,
-                type: 'register_request'
-            }).then((response) => {
+    const confirmFun = (e) => {
+        axios.post('https://api.investonline.su/api/v1/confirmations/check/email', {
+            email: signUpReduce.email,
+            code: e.target.value,
+            type: 'register_request'
+        }).then((response) => {
                 setConfirmPassword(null)
-                }
-            ).catch((error) => {
-                console.log(error);
-            });
+                setCheckCode(1)
+                console.log(response)
+            }
+        ).catch((error) => {
+            console.log(error);
+        });
 
     }
 
@@ -65,7 +65,6 @@ const SignUp = ({dispatchSignUp, signUpReduce}) => {
                 <button
                     style={chooseCategory === '' ? {border: '1px solid red'} : {border: '1px solid white'}}
                     type='submit'
-                    disabled={checkbox === false}
                     onClick={() => {
                         setChooseCategory('invest')
                     }}
@@ -75,7 +74,6 @@ const SignUp = ({dispatchSignUp, signUpReduce}) => {
                 </button>
                 <button
                     style={chooseCategory === '' ? {border: '1px solid red'} : {border: '1px solid white'}}
-                    disabled={checkbox === false}
                     onClick={() => {
                         setChooseCategory('borrower')
                     }}
@@ -96,14 +94,21 @@ const SignUp = ({dispatchSignUp, signUpReduce}) => {
                         type="email"
                         className="signInput signInputEmail"
                         placeholder="name@yourdomain.com"/>
-                    <button
-                        disabled={!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,8}$/i.test(signUpReduce.email)}
-                        onClick={() => {
-                            inputPassword()
-                            setConfirmPassword(1)
-                        }}
-                        className='inputEmailBtn'>Подтвердить
-                    </button>
+                    {checkCode === null ? <button
+                            disabled={!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,8}$/i.test(signUpReduce.email)}
+                            onClick={() => {
+                                inputPassword()
+                                setConfirmPassword(1)
+                            }}
+                            className='inputEmailBtn'>Подтвердить
+                        </button> :
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#0d1bf5"
+                             className="bi bi-check-lg" viewBox="0 0 16 16">
+                            <path
+                                d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                        </svg>
+                    }
+
                 </div>
             </div>
             <div
@@ -114,7 +119,7 @@ const SignUp = ({dispatchSignUp, signUpReduce}) => {
                     <input
                         onChange={(e) => {
                             register(e)
-                            if (e.target.value.length === 4){
+                            if (e.target.value.length === 4 || /^[+-]?\d+$/.test(e.target.value)) {
                                 confirmFun(e)
                             }
 
@@ -127,20 +132,50 @@ const SignUp = ({dispatchSignUp, signUpReduce}) => {
             </div>
             <div className='password'>
                 <label className="">Пароль</label>
-                <div className="inputPassword inputTop">
+                <div className={checkCode === null ?'inputPasswordDisabled inputTop' :"inputPassword inputTop"}>
                     <input
-                        disabled={chooseCategory === ''}
+                        disabled={checkCode === null}
                         onChange={(e) => {
-                            register(e)
+                            if (/(?=.*?["a-zA-Z-0-9])/.test(e.nativeEvent.data)){
+                                register(e)
+                            }
                         }}
+                        value={signUpReduce.password}
                         name='password'
                         type="password"
                         className="signInput"
                         placeholder="Введите ваш пароль"/>
                 </div>
             </div>
+            {
+                checkCode === 1 ?
+                <div className='availableSymbols'>
+                    <div className='separationSymbol'>
+                        <div className='symbols'>
+                            <div className={/(?=.*?[A-Z])/.test(signUpReduce.password) === true ?'availableSymbolsRight': 'availableSymbolsError'}> </div>
+                            <p>одна прописная буква</p>
+                        </div>
+                        <div className='symbols'>
+                            <div className={/(?=.*?[a-z])/.test(signUpReduce.password) === true ?'availableSymbolsRight': 'availableSymbolsError'}> </div>
+                            <p>одна строчная буква</p>
+                        </div>
+                    </div>
+                    <div className='separationSymbol'>
+                        <div className='symbols'>
+                            <div className={/.{8,}/.test(signUpReduce.password) === true ?'availableSymbolsRight': 'availableSymbolsError'}> </div>
+                            <p>не менее 8 символов</p>
+                        </div>
+                        <div className='symbols'>
+                            <div className={/(?=.*?[0-9])/.test(signUpReduce.password) === true ?'availableSymbolsRight': 'availableSymbolsError'}> </div>
+                            <p>одна цифра</p>
+                        </div>
+                    </div>
+
+                </div> : ''
+            }
             <div className='registerAgreement'>
                 <input
+                    disabled={signUpReduce.password.length < 8}
                     onClick={confirm}
                     type="checkbox"/>
                 <label htmlFor="1">Я согласен с <a href="#">Политикой обработки персональных данных</a> и даю
@@ -150,7 +185,7 @@ const SignUp = ({dispatchSignUp, signUpReduce}) => {
                 disabled={checkbox === false}
                 className="signButton"
             >
-                Sign up
+                Продолжить
             </button>
             <p className="text-center">
                 <small className="registerСhoose">

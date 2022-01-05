@@ -17,6 +17,9 @@
     border: 1px solid red;
 }
 
+.chooseBtn:hover{
+    cursor:pointer;
+}
 
 .signUp input {
     width: 100%;
@@ -26,6 +29,11 @@
     border-radius: 5px;
     border: 1px solid #e0e0e0;
     box-shadow: -2px 0px 0px 0px #3264f5;
+}
+
+.inputPasswordDisabled input{
+    border: 1px solid red;
+    box-shadow: -2px 0px 0px 0px red;
 }
 
 .signUp button:disabled {
@@ -49,11 +57,11 @@
 .signUp .confirmPassword {
     margin-bottom: 20px;
     transition: 0.5s;
-    display:none;
+    display: none;
 }
 
-.confirmPasswordActive{
-    display:block!important;
+.confirmPasswordActive {
+    display: block !important;
     transition: 0.5s;
 }
 
@@ -84,7 +92,7 @@
     cursor: pointer;
 }
 
-.chooseBtnAction{
+.chooseBtnAction {
     background: linear-gradient(
             260.79deg, #262626 -15.88%, #0243ff 121.51%);
     color: white;
@@ -93,6 +101,14 @@
 
 .inputEmail {
     display: flex;
+    position: relative;
+
+}
+
+.inputEmail svg {
+    position: absolute;
+    right: 16px;
+    top: 10px;
 }
 
 .inputEmailBtn {
@@ -106,7 +122,7 @@
     font-size: 17px;
 }
 
-.inputEmailBtn:hover{
+.inputEmailBtn:hover {
     cursor: pointer;
 }
 
@@ -123,13 +139,13 @@
     box-shadow: none;
 }
 
-.registerAgreement label{
+.registerAgreement label {
     width: 100%;
 }
 
 .registerAgreement input[type="checkbox" i] {
     width: 43px !important;
-    height: 27px ;
+    height: 27px;
     margin-right: 20px;
 }
 
@@ -147,8 +163,45 @@
     margin-left: 5px;
 }
 
+.availableSymbols {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
 
-@media screen and (max-width: 1305px) {
+
+
+.symbols {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
+.symbols p{
+    margin: 5px 0;
+}
+
+.availableSymbolsRight {
+    background: #0d1bf5;
+    display: inline-block;
+    width: 8.5px;
+    height: 8.5px;
+    margin-right: 9px;
+    border-radius: 50%;
+}
+
+.availableSymbolsError{
+    background: red;
+    display: inline-block;
+    width: 8.5px;
+    height: 8.5px;
+    margin-right: 9px;
+    border-radius: 50%;
+}
+
+@media screen and (max-width: 1312px) {
     .chooseBtn {
         padding: 15px 40px;
     }
@@ -157,9 +210,16 @@
         max-width: 109px;
         font-size: 13px;
     }
+
+    .symbols p {
+        font-size: 13px;
+    }
 }
 
 @media screen and (max-width: 1200px) {
+    .symbols p {
+        font-size: 15px;
+    }
     .chooseBtn {
         padding: 20px 60px;
     }
@@ -177,6 +237,12 @@
     }
 }
 
+@media screen and (max-width: 500px) {
+    .availableSymbols {
+        display: block;
+    }
+}
+
 @media screen and (max-width: 485px) {
     .chooseBtn {
         padding: 15px 40px;
@@ -189,6 +255,12 @@
 }
 
 @media screen and (max-width: 425px) {
+
+    .inputEmail svg{
+        width: 18px;
+        height: 18px;
+        top: 17px;
+    }
 
     .inputEmail {
         display: block;
@@ -203,6 +275,7 @@
 
     .signInputEmail {
         border-radius: 5px !important;
+        font-size: 14px!important;
     }
 
     .chooseCategory {
@@ -221,5 +294,16 @@
         margin-bottom: 30px;
         text-align: center;
         font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 350px){
+    .signInputEmail {
+        font-size: 13px!important;
+    }
+    .inputEmail svg{
+        width: 16px;
+        height: 16px;
+        right: 7px;
     }
 }
