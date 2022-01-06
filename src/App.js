@@ -3,6 +3,7 @@ import Register from "./register/register";
 import Logo from './imgInvestvent/logo.png'
 import Invest from './imgInvestvent/invest.png'
 import {useState} from "react";
+import React from "react";
 
 
 function App() {
@@ -37,3 +38,4 @@ function App() {
 }
 
 export default App;
+

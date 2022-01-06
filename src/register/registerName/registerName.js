@@ -1,5 +1,9 @@
 import React, {useState} from "react";
 import './registerName.css'
+import {Link} from "react-router-dom";
+import axios from "axios";
+import MaskedInput from 'react-text-mask'
+
 
 const RegisterName = ({dispatchSignUp, signUpReduce}) => {
 
@@ -8,16 +12,52 @@ const RegisterName = ({dispatchSignUp, signUpReduce}) => {
     const [confirmPassword, setConfirmPassword] = useState(null)
     const [checkCode, setCheckCode] = useState(null)
 
-    console.log(signUpReduce)
+
+    const phoneCodePost = () => {
+        // axios.post('https://api.investonline.su/api/v1/confirmations/send/phone',{
+        //     phone:signUpReduce.phone,
+        //     type: "register_request"
+        // }).then((response)=>{
+        //     console.log(response)
+        // }).catch((error)=>{
+        //     console.log(error)
+        // })
+    }
+
+
+    const phoneCodeGet = () => {
+        axios.post('https://api.investonline.su/api/v1/confirmations/check/phone',{
+            phone:signUpReduce.phone,
+            phone_code:signUpReduce.phone_code,
+            type: "register_request"
+        }).then((response)=>{
+            console.log(response)
+        }).catch((error)=>{
+            console.log(error)
+            setConfirmPassword(null)
+            setCheckCode(1)
+        })
+    }
 
     const register = (e) => {
         dispatchSignUp({
             payload: {
                 name: e.target.name,
-                value: e.target.value
+                value: e.target.value.replace(/(^|\s)\S/g, function(a) {return a.toUpperCase()})
             }
         })
     }
+
+
+
+    function capitalize() {
+        let str = "каждый охотник желает знать";
+        return str.replace(/(^|\s)\S/g, function(a) {return a.toUpperCase()})
+
+    }
+
+    console.log(signUpReduce.fio)
+
 
 
     return (
@@ -57,19 +97,38 @@ const RegisterName = ({dispatchSignUp, signUpReduce}) => {
                 <div className='email'>
                     <label className="">Телефон</label>
                     <div className="inputEmail inputTop">
-                        <input
+                        {/*<input*/}
+                        {/*    pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"*/}
+                        {/*    disabled={faceCategory === ''}*/}
+                        {/*    onChange={(e) => {*/}
+
+                        {/*    }}*/}
+                        {/*    name='phone'*/}
+                        {/*    value={signUpReduce.phone}*/}
+                        {/*    autocomplete="off"*/}
+                        {/*    type="text"*/}
+                        {/*    className="signInput signInputEmail form-control"*/}
+                        {/*    placeholder="+7 (999) 999-99-99"*/}
+                        {/*/>*/}
+                        <MaskedInput
                             disabled={faceCategory === ''}
+                            mask={['+', (7), '(', /[1-9]/, /\d/, /\d/, ')', /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/]}
+                            className="signInput signInputEmail form-control"
+                            name='phone'
+                            placeholder="+7 (999) 999-99-99"
+                            guide={false}
+                            value={signUpReduce.phone}
+                            id="my-input-id"
+                            onBlur={() => {
+                            }}
                             onChange={(e) => {
                                 register(e)
                             }}
-                            name='phone'
-                            type="tel"
-                            className="signInput signInputEmail"
-                            placeholder="+7 (999) 999-99-99"
                         />
                         {checkCode === null ? <button
-                                disabled={!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,8}$/i.test(signUpReduce.email)}
+                                disabled={!/^\+?[78][-\(]?\d{3}\)? ?\d{3}-?\d{2}-?\d{2}$/i.test(signUpReduce.phone)}
                                 onClick={() => {
+                                    phoneCodePost()
                                     setConfirmPassword(1)
                                 }}
                                 className='inputEmailBtn'>Подтвердить
@@ -91,11 +150,13 @@ const RegisterName = ({dispatchSignUp, signUpReduce}) => {
                         <input
                             onChange={(e) => {
                                 register(e)
-
+                                if (e.target.value.length === 4 ) {
+                                    phoneCodeGet(e)
+                                }
                             }}
                             name='phone_code'
                             type="text"
-                            className="signInput"
+                            className="signInput "
                             placeholder="Подтвердить пароль"/>
                     </div>
                 </div>
@@ -103,13 +164,11 @@ const RegisterName = ({dispatchSignUp, signUpReduce}) => {
                     <label className="">ФИО</label>
                     <div className={checkCode === null ? 'inputPasswordDisabled inputTop' : "inputPassword inputTop"}>
                         <input
-                            disabled={checkCode === null}
+                            disabled={signUpReduce.phone_code === ''}
                             onChange={(e) => {
-                                if (/(?=.*?["a-zA-Z-0-9])/.test(e.nativeEvent.data)) {
                                     register(e)
-                                }
                             }}
-                            value={signUpReduce.password}
+                            value={signUpReduce.fio}
                             name='fio'
                             type="text"
                             className="signInput"
@@ -117,6 +176,13 @@ const RegisterName = ({dispatchSignUp, signUpReduce}) => {
                         />
                     </div>
                 </div>
+                <button
+                    disabled={checkbox === false}
+                    className="signButton"
+                >
+                    <Link className="signButtonLink" to="registerPhone">Создать аккаунт</Link>
+
+                </button>
             </div>
         </div>
     )

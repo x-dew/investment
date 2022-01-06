@@ -25,3 +25,32 @@
 .registerPhoneTop{
     margin: 10px 0;
 }
+
+.registerFace{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.registerFace .chooseBtn{
+    width:100%;
+    max-width: 150px;
+    padding:20px 0;
+}
+
+.registerPhone button:disabled{
+    background: rgba(239, 239, 239, 0.3);
+    border-color: rgba(239, 239, 239, 0.3);
+    color: #b6b7b9;
+}
+
+.registerPhone .confirmPassword{
+    margin-top: 20px;
+}
+
+.registerPhone .password{
+    margin: 20px 0;
+}
+
+.registerPhone .signButtonLink{
+    color:black;
+}
