@@ -209,7 +209,7 @@ const SignUp = ({dispatchSignUp, signUpReduce}) => {
             </button>
             <p className="text-center">
                 <span className="registerСhoose">
-                    Already have an account? <Link to="registerPhone">Login in</Link>.
+                    Already have an account? <Link to="/">Login in</Link>.
                 </span>
             </p>
         </div>

@@ -1,21 +1,8 @@
 import React from "react";
 
-// export const signUpData = {
-//     name: '',
-//     email: '',
-//     email_code: '',
-//     password: ''
-// }
-
 export const signInData = {
-    youEmail: '',
-    youPassword: ''
-}
-
-
-export const signUpDataPhone = {
-    phone: '',
-    phone_code: ''
+    email: '',
+    password: ''
 }
 
 export const signUpData = {

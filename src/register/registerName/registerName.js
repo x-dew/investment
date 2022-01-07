@@ -8,7 +8,6 @@ import MaskedInput from 'react-text-mask'
 const RegisterName = ({dispatchSignUp, signUpReduce}) => {
 
     const [faceCategory, setFaceCategory] = useState('')
-    const [checkbox, setCheckbox] = useState(false)
     const [confirmPassword, setConfirmPassword] = useState(null)
     const [checkCode, setCheckCode] = useState(null)
 
@@ -20,7 +19,6 @@ const RegisterName = ({dispatchSignUp, signUpReduce}) => {
         }).then((response) => {
             console.log(response)
         }).catch((error) => {
-            console.log(error)
         })
     }
 
@@ -31,17 +29,15 @@ const RegisterName = ({dispatchSignUp, signUpReduce}) => {
             code: e.target.value,
             type: "register_request"
         }).then((response) => {
-            console.log(response)
-        }).catch((error) => {
-            console.log(error)
             setConfirmPassword(null)
             setCheckCode(1)
+        }).catch((error) => {
         })
     }
 
 
     const registrationData = () => {
-        axios.post('https://api.investonline.su/api/v1/register/with-profile',{
+        axios.post('https://api.investonline.su/api/v1/register/with-profile', {
             email: signUpReduce.email,
             email_code: signUpReduce.email_code,
             phone: signUpReduce.phone,
@@ -52,10 +48,9 @@ const RegisterName = ({dispatchSignUp, signUpReduce}) => {
             confidentiality_acceptance: true,
             fio: signUpReduce.fio,
             without_patronymic: false
-        }).then((response)=>{
+        }).then((response) => {
             console.log(response)
-        }).catch((error)=>{
-            console.log(error)
+        }).catch((error) => {
         })
     }
 
@@ -71,17 +66,6 @@ const RegisterName = ({dispatchSignUp, signUpReduce}) => {
     }
 
 
-    function capitalize() {
-        let str = "каждый охотник желает знать";
-        return str.replace(/(^|\s)\S/g, function (a) {
-            return a.toUpperCase()
-        })
-
-    }
-
-    console.log(signUpReduce.fio)
-
-
     return (
         <div className="registerName">
             <h1>Зарегистрироваться</h1>
@@ -91,47 +75,50 @@ const RegisterName = ({dispatchSignUp, signUpReduce}) => {
                     style={faceCategory === '' ? {border: '1px solid red'} : {border: '1px solid white'}}
                     type='submit'
                     onClick={(e) => {
-                        setFaceCategory('Entity')
+                        setFaceCategory('indiv')
                         dispatchSignUp({
-                            payload:{
-                                name:e.target.name,
-                                value: 'Entity'
+                            payload: {
+                                name: e.target.name,
+                                value: 'indiv'
                             }
                         })
                     }}
-                    className={`chooseBtn ${faceCategory === 'Entity' ? 'chooseBtnAction' : ''} chooseInvestor`}
+                    className={`chooseBtn ${faceCategory === 'indiv' ? 'chooseBtnAction' : ''} chooseInvestor`}
                 >
                     Юр.лицо
                 </button>
+                {
+                    signUpReduce.role === 'investor' ? <button
+                        name='legal_form_type'
+                        style={faceCategory === '' ? {border: '1px solid red'} : {border: '1px solid white'}}
+                        onClick={(e) => {
+                            setFaceCategory('entity')
+                            dispatchSignUp({
+                                payload: {
+                                    name: e.target.name,
+                                    value: 'entity'
+                                }
+                            })
+                        }}
+                        className={`chooseBtn ${faceCategory === 'entity' ? 'chooseBtnAction' : ''} choosePhysicalPerson`}
+                    >
+                        Физ.лицо
+                    </button> : ''
+                }
+
                 <button
                     name='legal_form_type'
                     style={faceCategory === '' ? {border: '1px solid red'} : {border: '1px solid white'}}
                     onClick={(e) => {
-                        setFaceCategory('Physical person')
+                        setFaceCategory('ie')
                         dispatchSignUp({
-                            payload:{
-                                name:e.target.name,
-                                value: 'Physical person'
+                            payload: {
+                                name: e.target.name,
+                                value: 'ie'
                             }
                         })
                     }}
-                    className={`chooseBtn ${faceCategory === 'Physical person' ? 'chooseBtnAction' : ''} choosePhysicalPerson`}
-                >
-                    Физ.лицо
-                </button>
-                <button
-                    name='legal_form_type'
-                    style={faceCategory === '' ? {border: '1px solid red'} : {border: '1px solid white'}}
-                    onClick={(e) => {
-                        setFaceCategory('SP')
-                        dispatchSignUp({
-                            payload:{
-                                name:e.target.name,
-                                value: 'SP'
-                            }
-                        })
-                    }}
-                    className={`chooseBtn ${faceCategory === 'SP' ? 'chooseBtnAction' : ''} chooseBorrower`}
+                    className={`chooseBtn ${faceCategory === 'ie' ? 'chooseBtnAction' : ''} chooseBorrower`}
                 >
                     ИП
                 </button>
@@ -140,19 +127,6 @@ const RegisterName = ({dispatchSignUp, signUpReduce}) => {
                 <div className='email'>
                     <label className="">Телефон</label>
                     <div className="inputEmail inputTop">
-                        {/*<input*/}
-                        {/*    pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"*/}
-                        {/*    disabled={faceCategory === ''}*/}
-                        {/*    onChange={(e) => {*/}
-
-                        {/*    }}*/}
-                        {/*    name='phone'*/}
-                        {/*    value={signUpReduce.phone}*/}
-                        {/*    autocomplete="off"*/}
-                        {/*    type="text"*/}
-                        {/*    className="signInput signInputEmail form-control"*/}
-                        {/*    placeholder="+7 (999) 999-99-99"*/}
-                        {/*/>*/}
                         <MaskedInput
                             disabled={faceCategory === ''}
                             mask={['+', (7), '(', /[1-9]/, /\d/, /\d/, ')', /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/]}
@@ -193,7 +167,7 @@ const RegisterName = ({dispatchSignUp, signUpReduce}) => {
                         <input
                             onChange={(e) => {
                                 register(e)
-                                if (e.target.value.length === 4) {
+                                if (e.target.value.length === 4 || /^[+-]?\d+$/.test(e.target.value)) {
                                     phoneCodeGet(e)
                                 }
                             }}
@@ -222,13 +196,13 @@ const RegisterName = ({dispatchSignUp, signUpReduce}) => {
                 <button
                     disabled={signUpReduce.fio !== '' ? false : true}
                     className="signButton"
-                    onClick={()=> {
+                    onClick={() => {
                         console.log(signUpReduce)
                         registrationData()
                     }}
 
                 >
-                    <Link className="signButtonLink" to="registerName">Создать аккаунт</Link>
+                    <Link className="signButtonLink" to="/">Создать аккаунт</Link>
 
                 </button>
             </div>

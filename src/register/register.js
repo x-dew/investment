@@ -4,14 +4,14 @@ import Img from './../imgInvestvent/logoRegister.png'
 import SignIn from "./SignIn/SignIn";
 import './register.css'
 import SignUp from "./SignUp/SignUp";
-import {signUpData, signInData, signUpDataPhone,reduce} from "./reduce/reduce";
+import {signUpData, signInData,reduce} from "./reduce/reduce";
 import RegisterName from "./registerName/registerName";
 
 
 const Register = ({color}) => {
 
     const [signUpReduce, dispatchSignUp] = useReducer(reduce, signUpData)
-    const [signInReduce, dispatchSignIn] = useReducer(reduce, signInData)
+    const [authorization,dispatchAuthorization] = useReducer(reduce,signInData)
 
 
     return (
@@ -21,8 +21,8 @@ const Register = ({color}) => {
                 <Routes>
                     <Route path="/"
                            element={<SignIn
-                               signInReduce={signInReduce}
-                               dispatchSignIn={dispatchSignIn}
+                               authorization={authorization}
+                               dispatchAuthorization={dispatchAuthorization}
                            />}/>
                     <Route path="register"
                            element={<SignUp
