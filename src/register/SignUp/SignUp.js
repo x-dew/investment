@@ -63,19 +63,33 @@ const SignUp = ({dispatchSignUp, signUpReduce}) => {
             <h1>Зарегистрироваться</h1>
             <div className='chooseCategory'>
                 <button
+                    name='role'
                     style={chooseCategory === '' ? {border: '1px solid red'} : {border: '1px solid white'}}
                     type='submit'
-                    onClick={() => {
-                        setChooseCategory('invest')
+                    onClick={(e) => {
+                        setChooseCategory('investor')
+                        dispatchSignUp({
+                            payload:{
+                                name:e.target.name,
+                                value: 'investor'
+                            }
+                        })
                     }}
-                    className={`chooseBtn ${chooseCategory === 'invest' ? 'chooseBtnAction' : ''} chooseInvestor`}
+                    className={`chooseBtn ${chooseCategory === 'investor' ? 'chooseBtnAction' : ''} chooseInvestor`}
                 >
                     Инвестор
                 </button>
                 <button
+                    name='role'
                     style={chooseCategory === '' ? {border: '1px solid red'} : {border: '1px solid white'}}
-                    onClick={() => {
+                    onClick={(e) => {
                         setChooseCategory('borrower')
+                        dispatchSignUp({
+                            payload:{
+                                name:e.target.name,
+                                value: 'borrower'
+                            }
+                        })
                     }}
                     className={`chooseBtn ${chooseCategory === 'borrower' ? 'chooseBtnAction' : ''} chooseBorrower`}
                 >
@@ -89,6 +103,7 @@ const SignUp = ({dispatchSignUp, signUpReduce}) => {
                         disabled={chooseCategory === ''}
                         onChange={(e) => {
                             register(e)
+                            console.log(signUpReduce)
                         }}
                         name='email'
                         type="email"

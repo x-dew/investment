@@ -14,28 +14,48 @@ const RegisterName = ({dispatchSignUp, signUpReduce}) => {
 
 
     const phoneCodePost = () => {
-        // axios.post('https://api.investonline.su/api/v1/confirmations/send/phone',{
-        //     phone:signUpReduce.phone,
-        //     type: "register_request"
-        // }).then((response)=>{
-        //     console.log(response)
-        // }).catch((error)=>{
-        //     console.log(error)
-        // })
+        axios.post('https://api.investonline.su/api/v1/confirmations/send/phone', {
+            phone: signUpReduce.phone,
+            type: "register_request"
+        }).then((response) => {
+            console.log(response)
+        }).catch((error) => {
+            console.log(error)
+        })
     }
 
 
-    const phoneCodeGet = () => {
-        axios.post('https://api.investonline.su/api/v1/confirmations/check/phone',{
-            phone:signUpReduce.phone,
-            phone_code:signUpReduce.phone_code,
+    const phoneCodeGet = (e) => {
+        axios.post('https://api.investonline.su/api/v1/confirmations/check/phone', {
+            phone: signUpReduce.phone,
+            code: e.target.value,
             type: "register_request"
+        }).then((response) => {
+            console.log(response)
+        }).catch((error) => {
+            console.log(error)
+            setConfirmPassword(null)
+            setCheckCode(1)
+        })
+    }
+
+
+    const registrationData = () => {
+        axios.post('https://api.investonline.su/api/v1/register/with-profile',{
+            email: signUpReduce.email,
+            email_code: signUpReduce.email_code,
+            phone: signUpReduce.phone,
+            phone_code: signUpReduce.phone_code,
+            role: signUpReduce.role,
+            legal_form_type: signUpReduce.legal_form_type,
+            password: signUpReduce.password,
+            confidentiality_acceptance: true,
+            fio: signUpReduce.fio,
+            without_patronymic: false
         }).then((response)=>{
             console.log(response)
         }).catch((error)=>{
             console.log(error)
-            setConfirmPassword(null)
-            setCheckCode(1)
         })
     }
 
@@ -43,21 +63,23 @@ const RegisterName = ({dispatchSignUp, signUpReduce}) => {
         dispatchSignUp({
             payload: {
                 name: e.target.name,
-                value: e.target.value.replace(/(^|\s)\S/g, function(a) {return a.toUpperCase()})
+                value: e.target.value.replace(/(^|\s)\S/g, function (a) {
+                    return a.toUpperCase()
+                })
             }
         })
     }
 
 
-
     function capitalize() {
         let str = "каждый охотник желает знать";
-        return str.replace(/(^|\s)\S/g, function(a) {return a.toUpperCase()})
+        return str.replace(/(^|\s)\S/g, function (a) {
+            return a.toUpperCase()
+        })
 
     }
 
     console.log(signUpReduce.fio)
-
 
 
     return (
@@ -65,28 +87,49 @@ const RegisterName = ({dispatchSignUp, signUpReduce}) => {
             <h1>Зарегистрироваться</h1>
             <div className='registerFace'>
                 <button
+                    name='legal_form_type'
                     style={faceCategory === '' ? {border: '1px solid red'} : {border: '1px solid white'}}
                     type='submit'
-                    onClick={() => {
+                    onClick={(e) => {
                         setFaceCategory('Entity')
+                        dispatchSignUp({
+                            payload:{
+                                name:e.target.name,
+                                value: 'Entity'
+                            }
+                        })
                     }}
                     className={`chooseBtn ${faceCategory === 'Entity' ? 'chooseBtnAction' : ''} chooseInvestor`}
                 >
                     Юр.лицо
                 </button>
                 <button
+                    name='legal_form_type'
                     style={faceCategory === '' ? {border: '1px solid red'} : {border: '1px solid white'}}
-                    onClick={() => {
+                    onClick={(e) => {
                         setFaceCategory('Physical person')
+                        dispatchSignUp({
+                            payload:{
+                                name:e.target.name,
+                                value: 'Physical person'
+                            }
+                        })
                     }}
-                    className={`chooseBtn ${faceCategory === 'Physical person' ? 'chooseBtnAction' : ''} chooseBorrower`}
+                    className={`chooseBtn ${faceCategory === 'Physical person' ? 'chooseBtnAction' : ''} choosePhysicalPerson`}
                 >
                     Физ.лицо
                 </button>
                 <button
+                    name='legal_form_type'
                     style={faceCategory === '' ? {border: '1px solid red'} : {border: '1px solid white'}}
-                    onClick={() => {
+                    onClick={(e) => {
                         setFaceCategory('SP')
+                        dispatchSignUp({
+                            payload:{
+                                name:e.target.name,
+                                value: 'SP'
+                            }
+                        })
                     }}
                     className={`chooseBtn ${faceCategory === 'SP' ? 'chooseBtnAction' : ''} chooseBorrower`}
                 >
@@ -150,7 +193,7 @@ const RegisterName = ({dispatchSignUp, signUpReduce}) => {
                         <input
                             onChange={(e) => {
                                 register(e)
-                                if (e.target.value.length === 4 ) {
+                                if (e.target.value.length === 4) {
                                     phoneCodeGet(e)
                                 }
                             }}
@@ -166,7 +209,7 @@ const RegisterName = ({dispatchSignUp, signUpReduce}) => {
                         <input
                             disabled={signUpReduce.phone_code === ''}
                             onChange={(e) => {
-                                    register(e)
+                                register(e)
                             }}
                             value={signUpReduce.fio}
                             name='fio'
@@ -177,10 +220,15 @@ const RegisterName = ({dispatchSignUp, signUpReduce}) => {
                     </div>
                 </div>
                 <button
-                    disabled={checkbox === false}
+                    disabled={signUpReduce.fio !== '' ? false : true}
                     className="signButton"
+                    onClick={()=> {
+                        console.log(signUpReduce)
+                        registrationData()
+                    }}
+
                 >
-                    <Link className="signButtonLink" to="registerPhone">Создать аккаунт</Link>
+                    <Link className="signButtonLink" to="registerName">Создать аккаунт</Link>
 
                 </button>
             </div>
