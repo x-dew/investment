@@ -1,0 +1,63 @@
+
+.profileHeader {
+    height: 100%;
+    min-height: 170px;
+    background: rgba(35, 53, 127, 1);
+}
+
+.container {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.companyInformation {
+    padding-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.menuLink {
+    display: flex;
+}
+
+.menuLink li {
+    color: white;
+    list-style: none;
+    margin-right: 20px;
+}
+
+.userInformation {
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    min-height: 70px;
+    background: #3264f5;
+    border-radius: 20px;
+    justify-content: space-between;
+    padding: 0 15px;
+}
+
+.userInformation p{
+    color:white;
+    margin-left: 10px;
+}
+
+.companyMenu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+
+}
+
+.userFlex{
+   display: flex;
+    align-items: center;
+}
+.userEmail{
+
+}

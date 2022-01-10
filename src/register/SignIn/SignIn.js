@@ -19,8 +19,7 @@ const SignIn = ({authorization, dispatchAuthorization}) => {
             email: authorization.email,
             password: authorization.password
         }).then((resp) => {
-            console.log(resp)
-        }).catch((error) => {
+            console.log(resp)}).catch((error) => {
             console.log(error)
         })
     }
@@ -55,11 +54,9 @@ const SignIn = ({authorization, dispatchAuthorization}) => {
                 </div>
             </div>
             <button
-                onClick={() => [
-                    authorizationDate()
-                ]}
+                onClick={() => [authorizationDate()]}
                 className="signButton">
-                Sign in
+               Sign in
             </button>
             <p className="text-center">
                 <small className="registerСhoose">

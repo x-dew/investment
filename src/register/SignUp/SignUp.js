@@ -204,12 +204,12 @@ const SignUp = ({dispatchSignUp, signUpReduce}) => {
                 disabled={checkbox === false}
                 className="signButton"
             >
-                <Link className="signButtonLink" to="registerPhone">Продолжить</Link>
+                <Link disabled={checkbox === false} className="signButtonLink" to="registerPhone">Продолжить</Link>
 
             </button>
             <p className="text-center">
                 <span className="registerСhoose">
-                    Already have an account? <Link to="/">Login in</Link>.
+                    Already have an account? <Link to="login">Login in</Link>.
                 </span>
             </p>
         </div>

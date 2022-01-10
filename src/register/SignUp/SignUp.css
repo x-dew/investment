@@ -39,7 +39,11 @@
 .signUp button:disabled {
     background: rgba(239, 239, 239, 0.3);
     border-color: rgba(239, 239, 239, 0.3);
-    color: #b6b7b9;
+    color: #b6b7b9!important;
+}
+
+.signUp a:disabled {
+    color: black;
 }
 
 .signUp input:focus-visible {

@@ -6,7 +6,7 @@ export const signInData = {
 }
 
 export const signUpData = {
-    email: '',
+    email: 'ahvah97@gmail.com',
     email_code: '',
     phone: '',
     phone_code: '',
@@ -14,7 +14,7 @@ export const signUpData = {
     legal_form_type: "",
     password: "",
     confidentiality_acceptance: true,
-    fio: "",
+    fio: "dfffsdf dsfdsfdfs sdfdsfdsf",
     without_patronymic: false
 }
 
