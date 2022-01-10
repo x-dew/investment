@@ -24,36 +24,37 @@ function App() {
     return (
         <div className="App" style={color === 0 ? {background: lightColor} : {background: darkColor}}>
             <Routes>
-                <Route path='/'
-                       element={<Register
-                           color={color}
-                           darkColor={darkColor}
-                           lightColor={lightColor}
-                           setColor={setColor}
-                       />}
-                />
                 <Route path="login"
-                       element={<SignIn
+                       element={
+                    <SignIn
                            authorization={authorization}
                            dispatchAuthorization={dispatchAuthorization}
-                       />}
+                       />
+                }
                 />
                 <Route path="register"
-                       element={<SignUp
-                           signUpReduce={signUpReduce}
-                           dispatchSignUp={dispatchSignUp}/>}
-                />
-                <Route path="registerPhone"
-                       element={<RegisterName
+                       element={
+                    <SignUp
                            signUpReduce={signUpReduce}
                            dispatchSignUp={dispatchSignUp}
-                       />}
+                    />
+                }
+                />
+                <Route path="registerPhone"
+                       element={
+                    <RegisterName
+                           signUpReduce={signUpReduce}
+                           dispatchSignUp={dispatchSignUp}
+                       />
+                }
                 />
                 <Route
-                    path='profile'
-                    element={<Profile
+                    path='/'
+                    element={
+                    <Profile
                         signUpReduce={signUpReduce}
-                    />}
+                    />
+                }
                 />
             </Routes>
         </div>

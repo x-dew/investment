@@ -10,7 +10,7 @@ import Logo from "../imgInvestvent/logo.png";
 import Invest from "../imgInvestvent/invest.png";
 
 
-const Register = ({color,lightColor,darkColor,setColor,Child}) => {
+const Register = ({color,lightColor,darkColor,setColor}) => {
 
 
     return (
