@@ -1,8 +1,14 @@
 import React from "react";
 import './profile.css'
+import { useHistory } from "react-router-dom";
 
 
-const Profile = ({signUpReduce}) => {
+const Profile = ({signUpReduce,setProfile}) => {
+
+    {
+        if(!localStorage.getItem('access_token')) setProfile('login')
+    }
+
     return (
         <div className='profile'>
             <div className='profileHeader'>

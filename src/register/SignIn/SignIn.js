@@ -4,7 +4,9 @@ import axios from "axios";
 import {Link} from "react-router-dom";
 import AuthWrap from "../../components/wrappers/AuthWrap";
 
-const SignIn = ({authorization, dispatchAuthorization}) => {
+const SignIn = ({authorization, dispatchAuthorization, profile, setProfile}) => {
+
+    const [disabledlink,setDisabledLink] = useState(false)
 
     const register = (e) => {
         dispatchAuthorization({
@@ -15,20 +17,35 @@ const SignIn = ({authorization, dispatchAuthorization}) => {
         })
     }
 
-    const [profile,setProfile] = useState('/login')
+
     const authorizationDate = () => {
         axios.post('https://api.investonline.su/api/v1/clients/web/login', {
             email: authorization.email,
             password: authorization.password
         }).then((resp) => {
             setProfile('/')
-            console.log(resp)})
-            .catch((error) => {
+            localStorage.setItem('access_token', resp.data.access_token)
+            localStorage.setItem('expires_in', resp.data.expires_in)
+            localStorage.setItem('refresh_token', resp.data.refresh_token)
+            console.log(resp)
+        }).catch((error) => {
+                setProfile('/login')
+                console.log(error)
+            })
+    }
+
+    const singIn = () => {
+        axios.get('https://api.investonline.su/api/v1/user/profile', {
+            include: 'roles,profiles,status',
+            headers: {
+                authorization: localStorage.getItem('access_token')
+            }
+        }).then((resp)=>{
+            console.log(resp)
+        }).catch((error)=>{
             console.log(error)
         })
     }
-
-
 
 
     return (
@@ -62,10 +79,12 @@ const SignIn = ({authorization, dispatchAuthorization}) => {
                     </div>
                 </div>
                 <button
-                    onClick={() => [authorizationDate()]}
+                    onClick={() => {
+                        authorizationDate()
+                        singIn()
+                    }}
                     className="signButton">
-                    <Link to={profile}> Sign in</Link>
-
+                    <Link disabled={disabledlink}  to={profile}> Sign in</Link>
                 </button>
                 <p className="text-center">
                     <small className="registerСhoose">
