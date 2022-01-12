@@ -3,7 +3,10 @@ import './profile.css'
 import { useHistory } from "react-router-dom";
 
 
-const Profile = ({signUpReduce,setProfile}) => {
+const Profile = ({setProfile}) => {
+
+    const listMenu = ['Лента проектов','Ваш портфель','История операций','Профиль','Ваши документы']
+
 
     {
         if(!localStorage.getItem('access_token')) setProfile('login')
@@ -40,21 +43,24 @@ const Profile = ({signUpReduce,setProfile}) => {
                         </div>
                         <div className='companyMenu'>
                             <ul className='menuLink'>
-                                <li>Лента проектов</li>
-                                <li>Ваш портфель</li>
-                                <li>История операций</li>
-                                <li>Профиль</li>
-                                <li>Ваши документы</li>
+                                {listMenu.map(value => {
+                                    return <li><a href="#">{value}</a></li>
+                                })}
                             </ul>
+                            <select className='menuLinkMedia'>
+                                {listMenu.map(value => {
+                                    return <option>{value}</option>
+                                })}
+                            </select>
                             <div className='userInformation userFlex'>
                                 <div className='userName userFlex'>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#fff"
                                          className="bi bi-person-circle" viewBox="0 0 16 16">
                                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                                        <path fill-rule="evenodd"
+                                        <path
                                               d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                                     </svg>
-                                    <p>{signUpReduce.fio}</p>
+                                    <p>{localStorage.getItem('name')}</p>
                                 </div>
                                 <div className='userEmail userFlex'>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#FFF"
@@ -62,7 +68,7 @@ const Profile = ({signUpReduce,setProfile}) => {
                                         <path
                                             d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
                                     </svg>
-                                    <p>{signUpReduce.email}</p>
+                                    <p>{localStorage.getItem('email')}</p>
                                 </div>
                             </div>
                         </div>

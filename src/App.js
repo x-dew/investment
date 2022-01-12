@@ -7,7 +7,7 @@ import Profile from "./profile/profile";
 import SignIn from "./register/SignIn/SignIn";
 import SignUp from "./register/SignUp/SignUp";
 import RegisterName from "./register/registerName/registerName";
-import {reduce, signInData, signUpData} from "./register/reduce/reduce";
+import {reduce, signInData, signUpData, profilesInvest,} from "./register/reduce/reduce";
 
 
 function App() {
@@ -21,13 +21,13 @@ function App() {
     const [color, setColor] = useState(0)
     const [profile, setProfile] = useState('/')
 
+
     return (
         <div className="App" style={color === 0 ? {background: lightColor} : {background: darkColor}}>
             <Routes>
                 <Route path="login"
                        element={
                            <SignIn
-                               profile={profile}
                                setProfile={setProfile}
                                authorization={authorization}
                                dispatchAuthorization={dispatchAuthorization}

@@ -4,9 +4,8 @@ import axios from "axios";
 import {Link} from "react-router-dom";
 import AuthWrap from "../../components/wrappers/AuthWrap";
 
-const SignIn = ({authorization, dispatchAuthorization, profile, setProfile}) => {
+const SignIn = ({authorization, dispatchAuthorization, setProfile}) => {
 
-    const [disabledlink,setDisabledLink] = useState(false)
 
     const register = (e) => {
         dispatchAuthorization({
@@ -18,31 +17,33 @@ const SignIn = ({authorization, dispatchAuthorization, profile, setProfile}) => 
     }
 
 
+
     const authorizationDate = () => {
         axios.post('https://api.investonline.su/api/v1/clients/web/login', {
             email: authorization.email,
             password: authorization.password
         }).then((resp) => {
-            setProfile('/')
             localStorage.setItem('access_token', resp.data.access_token)
             localStorage.setItem('expires_in', resp.data.expires_in)
             localStorage.setItem('refresh_token', resp.data.refresh_token)
-            console.log(resp)
+            singProfile()
         }).catch((error) => {
-                setProfile('/login')
-                console.log(error)
-            })
+            setProfile('/login')
+            console.log(error)
+        })
     }
 
-    const singIn = () => {
+    const singProfile = () => {
         axios.get('https://api.investonline.su/api/v1/user/profile', {
             include: 'roles,profiles,status',
             headers: {
-                authorization: localStorage.getItem('access_token')
+                accept: 'application/x.incrowd.v1+json',
+                authorization: `Bearer ${localStorage.getItem('access_token')}`
             }
-        }).then((resp)=>{
-            console.log(resp)
-        }).catch((error)=>{
+        }).then((resp) => {
+            localStorage.setItem('name', resp.data.user.data.fio)
+            localStorage.setItem('email', resp.data.user.data.email)
+        }).catch((error) => {
             console.log(error)
         })
     }
@@ -78,14 +79,16 @@ const SignIn = ({authorization, dispatchAuthorization, profile, setProfile}) => 
                             placeholder="Enter your password"/>
                     </div>
                 </div>
-                <button
-                    onClick={() => {
-                        authorizationDate()
-                        singIn()
-                    }}
-                    className="signButton">
-                    <Link disabled={disabledlink}  to={profile}> Sign in</Link>
-                </button>
+
+                <Link to={'/'}>
+                    <button
+                        onClick={() => {
+                            authorizationDate()
+                        }}
+                        className="signButton">
+                        Sign In
+                    </button>
+                </Link>
                 <p className="text-center">
                     <small className="registerСhoose">
                         Don't have an account yet? <Link to="/register">Sign up</Link>.

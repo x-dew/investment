@@ -5,6 +5,11 @@ export const signInData = {
     password: ''
 }
 
+export const profilesInvest= {
+    name:'',
+    email:''
+}
+
 export const signUpData = {
     email: '',
     email_code: '',
@@ -25,3 +30,4 @@ export const reduce = (state, action) => {
         [action.payload.name]: action.payload.value
     }
 }
+
