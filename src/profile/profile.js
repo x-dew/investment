@@ -44,13 +44,13 @@ const Profile = ({setProfile}) => {
                         </div>
                         <div className='companyMenu'>
                             <ul className='menuLink'>
-                                {listMenu.map(value => {
-                                    return <li><a href="#">{value}</a></li>
+                                {listMenu.map((value,index) => {
+                                    return <li key={index}><a href="#">{value}</a></li>
                                 })}
                             </ul>
                             <select className='menuLinkMedia'>
-                                {listMenu.map(value => {
-                                    return <option>{value}</option>
+                                {listMenu.map((value,index) => {
+                                    return <option key={index}>{value}</option>
                                 })}
                             </select>
                             <div className='userInformation userFlex'>

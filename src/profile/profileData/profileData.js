@@ -1,54 +1,52 @@
-import React, {useReducer} from "react";
+import React, {useReducer, useState} from "react";
 import './profileData.css'
 import {reduce, dataProfile} from "../reducerProfile";
+import PassportData from "./passportData";
 
 
 const ProfileData = () => {
 
     const [userData, dispatchData] = useReducer(reduce, dataProfile)
+    const [editButton,setEditButton] = useState(false)
+
     return (
         <div className='profileData'>
             <div className='userData'>
                 <div className='userDataList'>
-                    <h3>Персональные данные</h3>
-                    <div className='userList'>
-                        <ul>
-                            <li>ФИО</li>
-                            <li>Дата рождения</li>
-                            <li>Телефон</li>
-                            <li>ИНН</li>
-                            <li>Место рождения</li>
-                            <li>Адрес регистрации по месту жительства</li>
-                        </ul>
-                        <ul className='dataUser'>
-                            <li><p>ФИО</p></li>
-                            <li><p>Дата рождения</p></li>
-                            <li><p>Телефон</p></li>
-                            <li><p>ИНН</p></li>
-                            <li><p>Место рождения</p></li>
-                            <li><p>Адрес регистрации по месту жительства</p></li>
-                        </ul>
+                    <div className='editButton'>
+                        <h3>Персональные данные</h3>
+                        <button onClick={()=> {
+                            setEditButton(editButton === false ? true : false)
+                        }}>Редактировать</button>
+                    </div>
+                    <div className={editButton === false ? 'userList' : 'userList editUserData'}>
+                        <div className="userDataTabs">
+                            <label  className="userDataTabsLabel">ФИО:</label>
+                            <input disabled={!editButton} className="userDataTabsInput" placeholder={userData.fio}/>
+                        </div>
+                        <div className="userDataTabs">
+                            <label className="userDataTabsLabel">Дата рождения:</label>
+                            <input disabled={!editButton} className="userDataTabsInput" placeholder={userData.dataBorn}/>
+                        </div>
+                        <div className="userDataTabs">
+                            <label className="userDataTabsLabel">Телефон:</label>
+                            <input disabled={!editButton} className="userDataTabsInput" placeholder={userData.phone}/>
+                        </div>
+                        <div className="userDataTabs">
+                            <label className="userDataTabsLabel">ИНН:</label>
+                            <input disabled={!editButton} className="userDataTabsInput" placeholder={userData.inn}/>
+                        </div>
+                        <div className="userDataTabs">
+                            <label className="userDataTabsLabel">Место рождения:</label>
+                            <input disabled={!editButton} className="userDataTabsInput" placeholder={userData.livesBorn}/>
+                        </div>
+                        <div className="userDataTabs">
+                            <label className="userDataTabsLabel">Адрес регистрации по месту жительства:</label>
+                            <input disabled={!editButton} className="userDataTabsInput" placeholder={userData.address}/>
+                        </div>
                     </div>
                 </div>
-
-                <div className='userDataList'>
-                    <h3>Паспортные данные</h3>
-                    <div className='userList'>
-                        <ul>{Object.values(userData).map(value => {
-                            console.log(value)
-                           return <li><span>{value}</span></li>
-                        })}
-                        </ul>
-                        <ul className='dataUser'>
-                            <li><p>ФИО</p></li>
-                            <li><p>Дата рождения</p></li>
-                            <li><p>Телефон</p></li>
-                            <li><p>ИНН</p></li>
-                            <li><p>Место рождения</p></li>
-                            <li><p>Адрес регистрации по месту жительства</p></li>
-                        </ul>
-                    </div>
-                </div>
+                <PassportData/>
             </div>
         </div>
     )

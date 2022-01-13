@@ -7,39 +7,63 @@
     margin: 0 auto;
 }
 
+.editButton {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.editButton button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    background: #3264f5;
+    color: white;
+    cursor:pointer;
+}
+
 .userDataList {
     width: 45%;
     background: #F4F7F8;
     border-radius: 10px;
     padding: 15px 30px;
+    height: 100%;
 }
 
-.userDataList ul {
-    padding-left: 0;
-}
 
-.userDataList li {
-    list-style: none;
-    width: 100%;
-    max-width: 250px;
-    font-family: Museo Sans Cyrl sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    color: #8797B6;
-    margin-bottom: 17px;
-}
-
-.userList {
+.userDataTabs {
     display: flex;
+    flex-direction: column;
+}
+
+.userDataTabs label{
+    color: #8797b6;
+}
+
+.userList input {
+    background: transparent;
+    font-size: 17px;
+    margin-bottom: 12px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.editUserData input {
+    padding: 10px;
+    border: 1px solid #3264f5;
+}
+
+.userDataTabs input::placeholder {
+    color: black;
+    font-weight: 600;
 }
 
 .dataUser {
     margin: 0;
 }
 
-.dataUser p {
+.userList p {
     color: #333333;
     font-weight: 600;
 
