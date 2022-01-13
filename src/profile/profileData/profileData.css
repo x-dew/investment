@@ -54,6 +54,10 @@
     border: 1px solid #3264f5;
 }
 
+.TabsInput::placeholder{
+    color:red;
+}
+
 .userDataTabs input::placeholder {
     color: black;
     font-weight: 600;

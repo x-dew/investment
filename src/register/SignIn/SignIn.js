@@ -43,6 +43,7 @@ const SignIn = ({authorization, dispatchAuthorization, setProfile}) => {
         }).then((resp) => {
             localStorage.setItem('name', resp.data.user.data.fio)
             localStorage.setItem('email', resp.data.user.data.email)
+            console.log(resp)
         }).catch((error) => {
             console.log(error)
         })

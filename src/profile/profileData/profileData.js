@@ -7,7 +7,37 @@ import PassportData from "./passportData";
 const ProfileData = () => {
 
     const [userData, dispatchData] = useReducer(reduce, dataProfile)
-    const [editButton,setEditButton] = useState(false)
+    const [editButton, setEditButton] = useState(false)
+
+    console.log(editButton)
+
+    {
+        if (editButton === false) {
+            for (let key in userData) {
+                if (userData[key] === '') {
+                    console.log('1')
+                    userData[key] = 'Заполните поле'
+                }
+            }
+        }else {
+            for (let key in userData) {
+                if (userData[key] === 'Заполните поле') {
+                    console.log('1')
+                    userData[key] = ''
+                }
+            }
+        }
+    }
+
+
+    const profileFun = (e) => {
+        dispatchData({
+            payload: {
+                name: e.target.name,
+                value: e.target.value
+            }
+        })
+    }
 
     return (
         <div className='profileData'>
@@ -15,34 +45,90 @@ const ProfileData = () => {
                 <div className='userDataList'>
                     <div className='editButton'>
                         <h3>Персональные данные</h3>
-                        <button onClick={()=> {
+                        <button onClick={() => {
                             setEditButton(editButton === false ? true : false)
-                        }}>Редактировать</button>
+                        }}>Редактировать
+                        </button>
                     </div>
                     <div className={editButton === false ? 'userList' : 'userList editUserData'}>
                         <div className="userDataTabs">
-                            <label  className="userDataTabsLabel">ФИО:</label>
-                            <input disabled={!editButton} className="userDataTabsInput" placeholder={userData.fio}/>
+                            <label className="userDataTabsLabel">ФИО:</label>
+                            <input
+                                onChange={(e) => {
+                                    profileFun(e)
+                                }}
+                                name='fio'
+                                style={userData.fio === 'Заполните поле' ? {color: 'red'} : {color: 'black'}}
+                                disabled={!editButton}
+                                className="userDataTabsInput"
+                                value={userData.fio}
+                            />
                         </div>
                         <div className="userDataTabs">
                             <label className="userDataTabsLabel">Дата рождения:</label>
-                            <input disabled={!editButton} className="userDataTabsInput" placeholder={userData.dataBorn}/>
+                            <input
+                                style={userData.dataBorn === 'Заполните поле' ? {color: 'red'} : {color: 'black'}}
+                                onChange={(e) => {
+                                    profileFun(e)
+                                }}
+                                name='dataBorn'
+                                disabled={!editButton}
+                                className="userDataTabsInput"
+                                value={userData.dataBorn}
+                            />
                         </div>
                         <div className="userDataTabs">
                             <label className="userDataTabsLabel">Телефон:</label>
-                            <input disabled={!editButton} className="userDataTabsInput" placeholder={userData.phone}/>
+                            <input
+                                style={userData.phone === 'Заполните поле' ? {color: 'red'} : {color: 'black'}}
+                                onChange={(e) => {
+                                    profileFun(e)
+                                }}
+                                name='phone'
+                                disabled={!editButton}
+                                className="userDataTabsInput"
+                                value={userData.phone}
+                            />
                         </div>
                         <div className="userDataTabs">
                             <label className="userDataTabsLabel">ИНН:</label>
-                            <input disabled={!editButton} className="userDataTabsInput" placeholder={userData.inn}/>
+                            <input
+                                style={userData.inn === 'Заполните поле' ? {color: 'red'} : {color: 'black'}}
+                                onChange={(e) => {
+                                    profileFun(e)
+                                }}
+                                name='inn'
+                                disabled={!editButton}
+                                className="userDataTabsInput"
+                                value={userData.inn}
+                            />
                         </div>
                         <div className="userDataTabs">
                             <label className="userDataTabsLabel">Место рождения:</label>
-                            <input disabled={!editButton} className="userDataTabsInput" placeholder={userData.livesBorn}/>
+                            <input
+                                style={userData.livesBorn === 'Заполните поле' ? {color: 'red'} : {color: 'black'}}
+                                onChange={(e) => {
+                                    profileFun(e)
+                                }}
+                                name='livesBorn'
+                                disabled={!editButton}
+                                className="userDataTabsInput"
+                                value={userData.livesBorn}
+                            />
                         </div>
                         <div className="userDataTabs">
                             <label className="userDataTabsLabel">Адрес регистрации по месту жительства:</label>
-                            <input disabled={!editButton} className="userDataTabsInput" placeholder={userData.address}/>
+                            <input
+                                onChange={(e) => {
+                                    profileFun(e)
+                                    console.log(userData.address)
+                                }}
+                                name='address'
+                                style={userData.address === 'Заполните поле' ? {color: 'red'} : {color: 'black'}}
+                                disabled={!editButton}
+                                value={userData.address}
+                                className={userData.address === 'Заполните поле' ? 'userDataTabsInput TabsInput' : 'userDataTabsInput'}
+                            />
                         </div>
                     </div>
                 </div>
