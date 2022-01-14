@@ -15,6 +15,15 @@ export const passportData = {
     PassportScans: '',
 }
 
+export const listMenu = {
+    project:'Лента проектов',
+    briefcase:'Ваш портфель',
+    operations:'История операций',
+    profile:'Профиль',
+    documents:'Ваши документы'
+}
+
+
 export const reduce = (state, action) => {
     return {
         ...state,

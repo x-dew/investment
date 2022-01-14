@@ -1,10 +1,17 @@
-.userData {
-    display: flex;
-    justify-content: space-between;
-    padding: 25px;
+
+.profileData {
     width: 100%;
     max-width: 1500px;
     margin: 0 auto;
+
+}
+
+.userData {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+
+
 }
 
 .editButton {
@@ -19,7 +26,7 @@
     border-radius: 10px;
     background: #3264f5;
     color: white;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .userDataList {
@@ -30,13 +37,17 @@
     height: 100%;
 }
 
+.profileData h2 {
+    text-align: end;
+    padding-right: 15px;
+}
 
 .userDataTabs {
     display: flex;
     flex-direction: column;
 }
 
-.userDataTabs label{
+.userDataTabs label {
     color: #8797b6;
 }
 
@@ -54,8 +65,8 @@
     border: 1px solid #3264f5;
 }
 
-.TabsInput::placeholder{
-    color:red;
+.TabsInput::placeholder {
+    color: red;
 }
 
 .userDataTabs input::placeholder {
@@ -71,4 +82,44 @@
     color: #333333;
     font-weight: 600;
 
+}
+
+.emptyField {
+    display: flex;
+    align-items: center;
+}
+
+.emptyField h3 {
+    color: red;
+    margin-right: 10px;
+}
+
+@media screen and (max-width: 1400px) {
+    .userDataList {
+        width: 43%;
+    }
+}
+
+@media screen and (max-width: 970px) {
+    .sectionSelection li {
+        font-size: 16px;
+    }
+
+    .profileData h2 {
+        font-size: 19px;
+    }
+
+    .userDataList {
+        width: 41%;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .userData{
+        display: block;
+    }
+    .userDataList{
+        width: calc(100% - 60px);
+        margin-bottom: 20px;
+    }
 }

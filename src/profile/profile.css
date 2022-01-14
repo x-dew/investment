@@ -29,7 +29,7 @@
 }
 
 .companyMenu a {
-    font-size: 15px;
+    font-size: 14px;
     color: white;
     margin-right: 20px;
     text-decoration: none;
@@ -64,7 +64,7 @@
     align-items: center;
 }
 
-.menuLinkMedia{
+.menuLinkMedia {
     display: none;
     background: #3264f5;
     border: none;
@@ -74,6 +74,47 @@
     border-radius: 10px;
     margin-left: 40px;
 
+}
+
+.sectionSelection {
+    border-bottom: 1px solid #23357f;
+    margin-top: 40px;
+    padding: 15px 25px;
+}
+
+
+.sectionSelectionMenu {
+    display: flex;
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.sectionSelection li {
+    list-style: none;
+    margin-right: 30px;
+    font-size: 19px;
+    font-family: cursive;
+}
+
+.actionSelection {
+    position: relative;
+}
+
+
+.actionSelection::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    background: #3264f5;
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    height: 6px;
+}
+
+.actionSelectionError {
+    position: absolute;
 }
 
 @media screen and (max-width: 1678px) {
@@ -87,59 +128,68 @@
 }
 
 @media screen and (max-width: 1344px) {
-    .userInformation{
+    .userInformation {
         display: block;
         max-width: 350px;
 
     }
 }
-@media screen and (max-width: 1150px){
-    .menuLink{
+
+@media screen and (max-width: 1150px) {
+    .menuLink {
         display: none;
     }
-    .menuLinkMedia{
+
+    .menuLinkMedia {
         display: block;
     }
-    .userInformation{
+
+    .userInformation {
         display: flex;
         max-width: 550px;
 
     }
-    .profileHeader{
+
+    .profileHeader {
         min-height: 140px;
     }
 }
 
-@media screen and (max-width: 930px){
-    .companyInformation{
+@media screen and (max-width: 930px) {
+    .companyInformation {
         padding-bottom: 30px;
     }
-    .userInformation{
+
+    .userInformation {
         display: block;
         max-width: 350px;
         margin-left: 20px;
 
     }
 }
-@media screen and (max-width: 730px){
-    .userInformation p{
+
+@media screen and (max-width: 730px) {
+    .userInformation p {
         margin-bottom: 0;
         font-size: 13px;
 
     }
+
     .userFlex {
         align-items: end;
     }
-    .userInformation{
+
+    .userInformation {
         max-width: 250px;
     }
-    .menuLinkMedia{
+
+    .menuLinkMedia {
         font-size: 13px;
     }
 }
 
-@media screen and (max-width: 600px){
-    .userInformation{
+@media screen and (max-width: 600px) {
+    .userInformation {
         display: none;
     }
 }

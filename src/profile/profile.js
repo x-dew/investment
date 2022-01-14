@@ -1,13 +1,14 @@
-import React from "react";
+import React, {useReducer, useState} from "react";
 import './profile.css'
-import {useHistory} from "react-router-dom";
 import ProfileData from "./profileData/profileData";
+import {listMenu, reduce} from "./reducerProfile";
 
 
 const Profile = ({setProfile}) => {
 
-    const listMenu = ['Лента проектов', 'Ваш портфель', 'История операций', 'Профиль', 'Ваши документы']
-
+    const [menu, dispatchMenu] = useReducer(reduce, listMenu)
+    const menuData = Object.values(menu)
+    const [actionSelection, setActionSelection] = useState(1)
 
     {
         if (!localStorage.getItem('access_token')) setProfile('login')
@@ -44,12 +45,12 @@ const Profile = ({setProfile}) => {
                         </div>
                         <div className='companyMenu'>
                             <ul className='menuLink'>
-                                {listMenu.map((value,index) => {
+                                {menuData.map((value, index) => {
                                     return <li key={index}><a href="#">{value}</a></li>
                                 })}
                             </ul>
                             <select className='menuLinkMedia'>
-                                {listMenu.map((value,index) => {
+                                {menuData.map((value, index) => {
                                     return <option key={index}>{value}</option>
                                 })}
                             </select>
@@ -75,6 +76,25 @@ const Profile = ({setProfile}) => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className='sectionSelection'>
+                <ul className='sectionSelectionMenu'>
+                    <li
+                        onClick={()=>setActionSelection(1)}
+                        className={actionSelection === 1 ? 'actionSelection' : ''}
+                    >Данные профиля
+                    </li>
+                    <li
+                        onClick={()=>setActionSelection(2)}
+                        className={actionSelection === 2 ? 'actionSelection' : ''}
+                    >Банковские реквизиты
+                    </li>
+                    <li
+                        onClick={()=>setActionSelection(3)}
+                        className={actionSelection === 3 ? 'actionSelection' : ''}
+                    >Виртуальный счет
+                    </li>
+                </ul>
             </div>
             <div className='profileTable'>
                 <ProfileData/>
