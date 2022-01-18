@@ -1,6 +1,7 @@
 import React, {useReducer,useState} from "react";
 import './profileData.css'
 import {reduce, dataProfile,passportData} from "../reducerProfile";
+import axios from "axios";
 
 const PassportData = ()=>{
 
@@ -25,6 +26,20 @@ const PassportData = ()=>{
         }
     }
 
+    const handleData = () => {
+        axios.get('https://api.investonline.su/api/v1/user/profile', {
+            include: 'roles,profiles',
+            headers: {
+                accept: 'application/x.incrowd.v1+json',
+                authorization: `Bearer ${localStorage.getItem('access_token')}`
+            }
+        }).then(function (response) {
+                console.log(response)
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
 
     const profileFun = (e) => {
         dispatchPassportData({
@@ -41,6 +56,7 @@ const PassportData = ()=>{
                 <h3>Паспортные данные</h3>
                 <button onClick={()=> {
                     setEditButton(editButton === false ? true : false)
+
                 }}>Редактировать</button>
             </div>
             <div className={editButton === false ? 'userList' : 'userList editUserData'}>

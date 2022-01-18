@@ -10,7 +10,7 @@
     display: flex;
     justify-content: space-between;
     padding: 0 15px;
-
+    flex-wrap: wrap;
 
 }
 
@@ -35,6 +35,7 @@
     border-radius: 10px;
     padding: 15px 30px;
     height: 100%;
+    margin-bottom: 25px;
 }
 
 .profileData h2 {
@@ -94,6 +95,19 @@
     margin-right: 10px;
 }
 
+.internationalOrganization__title{
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 15px;
+
+}
+
+.internationalOrganization__title p{
+    margin-top: 0;
+}
+
 @media screen and (max-width: 1400px) {
     .userDataList {
         width: 43%;
@@ -115,10 +129,11 @@
 }
 
 @media screen and (max-width: 850px) {
-    .userData{
+    .userData {
         display: block;
     }
-    .userDataList{
+
+    .userDataList {
         width: calc(100% - 60px);
         margin-bottom: 20px;
     }

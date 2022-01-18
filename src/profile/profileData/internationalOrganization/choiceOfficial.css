@@ -1,0 +1,15 @@
+
+.choiceOfficial__button {
+    border: none;
+    border-radius: 10px;
+    padding: 15px 0;
+    width: 100%;
+    max-width: 100px;
+    margin-right: 27px;
+    font-weight: bold;
+}
+
+.actionButton {
+    background: linear-gradient(260.79deg, #0008ff -15.88%, #323a37 121.51%);
+    color: white;
+}

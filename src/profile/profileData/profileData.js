@@ -3,6 +3,7 @@ import './profileData.css'
 import {reduce, dataProfile} from "../reducerProfile";
 import PassportData from "./passportData";
 import UserData from "./userData";
+import InternationalOrganization from "./internationalOrganization/internationalOrganization";
 
 
 const ProfileData = () => {
@@ -13,6 +14,7 @@ const ProfileData = () => {
             <div className='userData'>
                 <UserData/>
                 <PassportData/>
+                <InternationalOrganization/>
             </div>
         </div>
     )
