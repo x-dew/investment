@@ -4,6 +4,7 @@ import {reduce, dataProfile} from "../reducerProfile";
 import PassportData from "./passportData";
 import UserData from "./userData";
 import InternationalOrganization from "./internationalOrganization/internationalOrganization";
+import RelativesYour from "./relativesYour/relativesYour";
 
 
 const ProfileData = () => {
@@ -15,6 +16,7 @@ const ProfileData = () => {
                 <UserData/>
                 <PassportData/>
                 <InternationalOrganization/>
+                <RelativesYour/>
             </div>
         </div>
     )

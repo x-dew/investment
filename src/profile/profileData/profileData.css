@@ -95,7 +95,7 @@
     margin-right: 10px;
 }
 
-.internationalOrganization__title{
+.internationalOrganization__title {
     display: flex;
     align-items: start;
     justify-content: space-between;
@@ -104,8 +104,35 @@
 
 }
 
-.internationalOrganization__title p{
+.internationalOrganization__title p {
     margin-top: 0;
+}
+
+.officialInput__button {
+    display: flex;
+    margin-top: 20px;
+}
+
+.saveButton {
+    background: #3fcd3f;
+    border-radius: 10px;
+    border: none;
+    width: 100%;
+    padding: 10px 0;
+    color: white;
+    cursor: pointer;
+}
+
+.backButton {
+    background: red;
+    border-radius: 10px;
+    border: none;
+    width: 100%;
+    max-width: 150px;
+    padding: 10px 0;
+    color: white;
+    margin-left: 20px;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 1400px) {

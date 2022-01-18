@@ -15,19 +15,19 @@ const InternationalOrganization = () => {
                         международной организации (МПДЛ) или российским публичным должностным лицом (РПДЛ) (пункт 1
                         статьи 7.3 Закона № 115-ФЗ)
                     </p>
-                    <div className='editButton'>
-                        <button
-                            onClick={() =>
-                                editButton === false ? setEditButton(true) : setEditButton(false)
-                            }
-                        >
-                            Редактировать
-                        </button>
-                    </div>
+                    {
+                        editButton === false ? <div className='editButton'>
+                            <button
+                                onClick={() => setEditButton(true)}
+                            >Редактировать
+                            </button>
+                        </div> : ''
+                    }
+
                 </div>
                 <div className='choiceOfficial'>
                     {
-                        editButton === false ? <h4>Нет</h4> : <ChoiceOfficial/>
+                        editButton === false ? <h4>Нет</h4> : <ChoiceOfficial setEditButton={setEditButton}/>
                     }
 
                 </div>

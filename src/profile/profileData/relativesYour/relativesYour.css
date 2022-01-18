@@ -1,13 +1,27 @@
-.choiceOfficial__buttons {
+.relativesYour__title {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 15px;
+
+}
+
+.relativesYour__title p {
+    margin-top: 0;
+}
+
+.relativesName__buttons {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.buttonsBlock{
+
+.buttonsBlock {
     width: 100%;
 }
 
-.choiceOfficial__button {
+.relativesName__button {
     border: none;
     border-radius: 10px;
     padding: 15px 0;
@@ -23,20 +37,29 @@
     color: white;
 }
 
-.choiceOfficial__inputs {
+.relativesName__inputs {
     margin-top: 20px;
 }
 
-.choiceOfficial__input {
+.relativesName__input {
     display: flex;
     flex-direction: column;
 }
 
-.officialInput {
+.relativesInput {
     padding: 10px;
     border: 1px solid #3264f5;
     font-size: 17px;
     margin-bottom: 12px;
     border-radius: 10px;
     margin-top: 5px;
+}
+
+.husband__wife{
+    margin-bottom: 20px;
+}
+
+.relativesInput__button{
+    display: flex;
+    margin-top: 20px;
 }

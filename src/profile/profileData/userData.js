@@ -35,10 +35,13 @@ const UserData = () => {
         <div className='userDataList'>
             <div className='editButton'>
                 <h3>Персональные данные</h3>
-                <button onClick={() => {
-                    setEditButton(editButton === false ? true : false)
-                }}>Редактировать
-                </button>
+                {
+                    editButton === false ? <button onClick={() => {
+                        setEditButton(true )
+                    }}>Редактировать
+                    </button> : ''
+                }
+
             </div>
             <div className={editButton === false ? 'userList' : 'userList editUserData'}>
                 <div className="userDataTabs">
@@ -119,6 +122,15 @@ const UserData = () => {
                         className={userData.address === 'Заполните поле' ? 'userDataTabsInput TabsInput' : 'userDataTabsInput'}
                     />
                 </div>
+                {
+                    editButton === true ? <div className='officialInput__button'>
+                        <button className='saveButton'>Сохранить</button>
+                        <button
+                            onClick={()=>setEditButton(false)}
+                            className='backButton'>Отмена</button>
+                    </div> : ''
+                }
+
             </div>
         </div>
     )

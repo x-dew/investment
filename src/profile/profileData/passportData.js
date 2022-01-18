@@ -1,12 +1,12 @@
-import React, {useReducer,useState} from "react";
+import React, {useReducer, useState} from "react";
 import './profileData.css'
-import {reduce, dataProfile,passportData} from "../reducerProfile";
+import {reduce, dataProfile, passportData} from "../reducerProfile";
 import axios from "axios";
 
-const PassportData = ()=>{
+const PassportData = () => {
 
     const [passportUser, dispatchPassportData] = useReducer(reduce, passportData)
-    const [editButton,setEditButton] = useState(false)
+    const [editButton, setEditButton] = useState(false)
 
     {
         if (editButton === false) {
@@ -16,7 +16,7 @@ const PassportData = ()=>{
                     passportUser[key] = 'Заполните поле'
                 }
             }
-        }else {
+        } else {
             for (let key in passportUser) {
                 if (passportUser[key] === 'Заполните поле') {
                     console.log('1')
@@ -34,8 +34,8 @@ const PassportData = ()=>{
                 authorization: `Bearer ${localStorage.getItem('access_token')}`
             }
         }).then(function (response) {
-                console.log(response)
-            })
+            console.log(response)
+        })
             .catch(function (error) {
                 console.log(error);
             })
@@ -50,23 +50,26 @@ const PassportData = ()=>{
         })
     }
 
-    return(
+    return (
         <div className='userDataList'>
             <div className='editButton'>
                 <h3>Паспортные данные</h3>
-                <button onClick={()=> {
-                    setEditButton(editButton === false ? true : false)
+                {
+                    editButton === false ? <button onClick={() => {
+                        setEditButton(true)
 
-                }}>Редактировать</button>
+                    }}>Редактировать</button> : ''
+                }
+
             </div>
             <div className={editButton === false ? 'userList' : 'userList editUserData'}>
                 <div className="userDataTabs">
                     <label className="userDataTabsLabel">Серия и номер паспорта:</label>
                     <input
                         name='SeriesAndNumber'
-                         onChange={(e) => {
-                                    profileFun(e)
-                                }}
+                        onChange={(e) => {
+                            profileFun(e)
+                        }}
                         style={passportUser.SeriesAndNumber === 'Заполните поле' ? {color: 'red'} : {color: 'black'}}
                         disabled={!editButton}
                         className="userDataTabsInput"
@@ -76,9 +79,9 @@ const PassportData = ()=>{
                     <label className="userDataTabsLabel">Дата выдачи:</label>
                     <input
                         name='dateIssue'
-                         onChange={(e) => {
-                                    profileFun(e)
-                                }}
+                        onChange={(e) => {
+                            profileFun(e)
+                        }}
                         style={passportUser.dateIssue === 'Заполните поле' ? {color: 'red'} : {color: 'black'}}
                         disabled={!editButton}
                         className="userDataTabsInput"
@@ -88,9 +91,9 @@ const PassportData = ()=>{
                     <label className="userDataTabsLabel">Кем выдан:</label>
                     <input
                         name='issuedBy'
-                         onChange={(e) => {
-                                    profileFun(e)
-                                }}
+                        onChange={(e) => {
+                            profileFun(e)
+                        }}
                         style={passportUser.issuedBy === 'Заполните поле' ? {color: 'red'} : {color: 'black'}}
                         disabled={!editButton}
                         className="userDataTabsInput"
@@ -100,9 +103,9 @@ const PassportData = ()=>{
                     <label className="userDataTabsLabel">Код подразделения:</label>
                     <input
                         name='departmentCode'
-                         onChange={(e) => {
-                                    profileFun(e)
-                                }}
+                        onChange={(e) => {
+                            profileFun(e)
+                        }}
                         style={passportUser.departmentCode === 'Заполните поле' ? {color: 'red'} : {color: 'black'}}
                         disabled={!editButton}
                         className="userDataTabsInput"
@@ -112,16 +115,25 @@ const PassportData = ()=>{
                     <label className="userDataTabsLabel">Сканы паспорта:</label>
                     <input
                         name='PassportScans'
-                         onChange={(e) => {
-                                    profileFun(e)
-                                }}
+                        onChange={(e) => {
+                            profileFun(e)
+                        }}
                         style={passportUser.PassportScans === 'Заполните поле' ? {color: 'red'} : {color: 'black'}}
                         disabled={!editButton}
                         className="userDataTabsInput"
                         value={passportUser.PassportScans}/>
                 </div>
+                {
+                    editButton === true ? <div className='officialInput__button'>
+                        <button className='saveButton'>Сохранить</button>
+                        <button
+                            onClick={() => setEditButton(false)}
+                            className='backButton'>Отмена
+                        </button>
+                    </div> : ''
+                }
             </div>
         </div>
     )
 }
-export  default PassportData
+export default PassportData
