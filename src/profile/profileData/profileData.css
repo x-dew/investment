@@ -94,21 +94,71 @@
     color: red;
     margin-right: 10px;
 }
+/*-----------------------table-form-------------------------*/
 
-.internationalOrganization__title {
+.table__title {
     display: flex;
     align-items: start;
     justify-content: space-between;
     margin-top: 10px;
     margin-bottom: 15px;
-
 }
 
-.internationalOrganization__title p {
+
+.table__title p {
     margin-top: 0;
+    width: 100%;
+    max-width: 500px;
+    margin-right: 30px;
 }
 
-.officialInput__button {
+.actionButton {
+    background: linear-gradient(260.79deg, #0008ff -15.88%, #323a37 121.51%);
+    color: white;
+}
+
+.table__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.table__inputs {
+    margin-top: 20px;
+}
+
+.table__input {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.tableInput {
+    padding: 10px;
+    border: 1px solid #3264f5;
+    font-size: 17px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.table__button {
+    border: none;
+    border-radius: 10px;
+    padding: 15px 0;
+    width: 100%;
+    max-width: 100px;
+    margin-right: 27px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.buttonsBlock{
+    width: 100%;
+}
+
+.tableInput__button {
     display: flex;
     margin-top: 20px;
 }

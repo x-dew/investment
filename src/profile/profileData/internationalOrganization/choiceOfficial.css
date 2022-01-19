@@ -1,42 +1,7 @@
-.choiceOfficial__buttons {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.buttonsBlock{
-    width: 100%;
-}
 
-.choiceOfficial__button {
-    border: none;
-    border-radius: 10px;
-    padding: 15px 0;
-    width: 100%;
-    max-width: 100px;
-    margin-right: 27px;
-    font-weight: bold;
-    cursor: pointer;
-}
 
-.actionButton {
-    background: linear-gradient(260.79deg, #0008ff -15.88%, #323a37 121.51%);
-    color: white;
-}
 
-.choiceOfficial__inputs {
-    margin-top: 20px;
-}
 
-.choiceOfficial__input {
-    display: flex;
-    flex-direction: column;
-}
 
-.officialInput {
-    padding: 10px;
-    border: 1px solid #3264f5;
-    font-size: 17px;
-    margin-bottom: 12px;
-    border-radius: 10px;
-    margin-top: 5px;
-}
+
+

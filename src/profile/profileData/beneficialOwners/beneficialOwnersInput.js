@@ -1,15 +1,14 @@
-import React, {useState} from "react";
-import './relativesYour.css'
+import React,{useState} from "react";
+import './beneficialOwners.css'
 
-
-const RelativesInput = ({setEditButton}) => {
+const BeneficialOwnersInput =({setEditButton})=>{
 
     const [relatives, setRelatives] = useState(1)
     const [husbandWife,setHusbandWife] = useState(1)
+    const [beneficiary,setBeneficiary] = useState(1)
 
-
-    return (
-        <div className='relativesName'>
+    return(
+        <div className='beneficialOwners'>
             <div className='table__buttons'>
                 <div className='buttonsBlock'>
                     <button
@@ -20,17 +19,7 @@ const RelativesInput = ({setEditButton}) => {
                     <button
                         className={relatives === 2 ? 'table__button actionButton' : 'table__button'}
                         onClick={() => setRelatives(2)}
-                    >ИПДЛ
-                    </button>
-                    <button
-                        className={relatives === 3 ? 'table__button actionButton' : 'table__button'}
-                        onClick={() => setRelatives(3)}
-                    >МПДЛ
-                    </button>
-                    <button
-                        className={relatives === 4 ? 'table__button actionButton' : 'table__button'}
-                        onClick={() => setRelatives(4)}
-                    >РПДЛ
+                    >Есть
                     </button>
                 </div>
                 {
@@ -48,55 +37,77 @@ const RelativesInput = ({setEditButton}) => {
             {
                 relatives !== 1 ? < div className='table__inputs'>
                     <div className="table__input">
-                        <label className="relativesLabel">ФИО супруга /супруги или близких родственников:</label>
+                        <label className="relativesLabel">ФИО:</label>
+                        <input
+                            name="dataBorn"
+                            className="tableInput"
+                        />
+                    </div>
+                    <div className="table__input">
+                        <label className="relativesLabel">Дата рождения :</label>
                         <input
                             name="dataBorn"
                             className="tableInput"
                         />
                     </div>
                     <div className='husband__wife'>
-                        <p>Степень родства</p>
+                        <p>Гражданство</p>
                         <button
                             className={husbandWife === 1 ? 'table__button actionButton' : 'table__button'}
                             onClick={() => setHusbandWife(1)}
-                        >муж
+                        >РФ
                         </button>
                         <button
                             className={husbandWife === 2 ? 'table__button actionButton' : 'table__button'}
                             onClick={() => setHusbandWife(2)}
-                        >жена
+                        >ИНОЕ
                         </button>
                     </div>
                     <div className="table__input">
-                        <label className="relativesLabel">Должность/титул/звание/сан :</label>
-                        <input
-                            name="dataBorn"
-                            className="tableInput"
-                            placeholder='Например, должность'
-                        />
-                    </div>
-                    <div className="table__input">
-                        <label className="relativesLabel">Страна:</label>
+                        <label className="relativesLabel">Серия и номер паспорта :</label>
                         <input
                             name="dataBorn"
                             className="tableInput"
                         />
                     </div>
                     <div className="table__input">
-                        <label className="relativesLabel">Наименование работодателя :</label>
+                        <label className="relativesLabel">Адрес места жительства :</label>
                         <input
                             name="dataBorn"
                             className="tableInput"
-                            placeholder='Наименование работодателя'
                         />
                     </div>
                     <div className="table__input">
-                        <label className="relativesLabel">Адрес работодателя :</label>
+                        <label className="relativesLabel">ИНН :</label>
                         <input
                             name="dataBorn"
-                            className="tableInput"
-                            placeholder='Наименование работодателя'
-                        />
+                            className="tableInput"/>
+                    </div>
+                    <div className='blockButton' >
+                        <h4>Является ли бенефициар ИПДЛ /МПДЛ /РПДЛ</h4>
+                        <div className='buttonsBlock'>
+                            <button
+                                className={beneficiary === 1 ? 'table__button actionButton' : 'table__button'}
+                                onClick={() => setBeneficiary(1)}
+                            >Нет
+                            </button>
+                            <button
+                                className={beneficiary === 2 ? 'table__button actionButton' : 'table__button'}
+                                onClick={() => setBeneficiary(2)}
+                            >ИПДЛ
+
+                            </button>
+                            <button
+                                className={beneficiary === 3 ? 'table__button actionButton' : 'table__button'}
+                                onClick={() => setBeneficiary(3)}
+                            >МПДЛ
+                            </button>
+                            <button
+                                className={beneficiary === 4 ? 'table__button actionButton' : 'table__button'}
+                                onClick={() => setBeneficiary(4)}
+                            >РПДЛ
+                            </button>
+                        </div>
                     </div>
                     <div className='tableInput__button'>
                         <button className='saveButton'>Сохранить</button>
@@ -105,7 +116,8 @@ const RelativesInput = ({setEditButton}) => {
                 </div> : ''
             }
         </div>
+
     )
 }
 
-export default RelativesInput
+export default BeneficialOwnersInput

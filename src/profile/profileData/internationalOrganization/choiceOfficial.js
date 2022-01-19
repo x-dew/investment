@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import './choiceOfficial.css'
 
 const ChoiceOfficial = ({setEditButton}) => {
 
@@ -8,25 +7,25 @@ const ChoiceOfficial = ({setEditButton}) => {
 
     return (
         <div className='choiceOfficial'>
-            <div className='choiceOfficial__buttons'>
+            <div className='table__buttons'>
                 <div className='buttonsBlock'>
                     <button
-                        className={official === 1 ? 'choiceOfficial__button actionButton' : 'choiceOfficial__button'}
+                        className={official === 1 ? 'table__button actionButton' : 'table__button'}
                         onClick={() => setOfficial(1)}
                     >Нет
                     </button>
                     <button
-                        className={official === 2 ? 'choiceOfficial__button actionButton' : 'choiceOfficial__button'}
+                        className={official === 2 ? 'table__button actionButton' : 'table__button'}
                         onClick={() => setOfficial(2)}
                     >ИПДЛ
                     </button>
                     <button
-                        className={official === 3 ? 'choiceOfficial__button actionButton' : 'choiceOfficial__button'}
+                        className={official === 3 ? 'table__button actionButton' : 'table__button'}
                         onClick={() => setOfficial(3)}
                     >МПДЛ
                     </button>
                     <button
-                        className={official === 4 ? 'choiceOfficial__button actionButton' : 'choiceOfficial__button'}
+                        className={official === 4 ? 'table__button actionButton' : 'table__button'}
                         onClick={() => setOfficial(4)}
                     >РПДЛ
                     </button>
@@ -44,39 +43,39 @@ const ChoiceOfficial = ({setEditButton}) => {
 
             </div>
             {
-                official !== 1 ? < div className='choiceOfficial__inputs'>
-                    <div className="choiceOfficial__input">
+                official !== 1 ? < div className='table__inputs'>
+                    <div className="table__input">
                         <label className="officialLabel">Должность/титул/звание/сан :</label>
                         <input
                             name="dataBorn"
-                            className="officialInput"
+                            className="tableInput"
                             placeholder='Например, должность'
                         />
                     </div>
-                    <div className="choiceOfficial__input">
+                    <div className="table__input">
                         <label className="officialLabel">Страна:</label>
                         <input
                             name="dataBorn"
-                            className="officialInput"
+                            className="tableInput"
                         />
                     </div>
-                    <div className="choiceOfficial__input">
+                    <div className="table__input">
                         <label className="officialLabel">Наименование работодателя :</label>
                         <input
                             name="dataBorn"
-                            className="officialInput"
+                            className="tableInput"
                             placeholder='Наименование работодателя'
                         />
                     </div>
-                    <div className="choiceOfficial__input">
+                    <div className="table__input">
                         <label className="officialLabel">Адрес работодателя :</label>
                         <input
                             name="dataBorn"
-                            className="officialInput"
+                            className="tableInput"
                             placeholder='Наименование работодателя'
                         />
                     </div>
-                    <div className='officialInput__button'>
+                    <div className='tableInput__button'>
                         <button className='saveButton'>Сохранить</button>
                         <button onClick={() => setEditButton(false)} className='backButton'>Отмена</button>
                     </div>

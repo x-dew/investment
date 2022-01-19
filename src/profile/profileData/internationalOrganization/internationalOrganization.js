@@ -9,7 +9,7 @@ const InternationalOrganization = () => {
     return (
         <div className='userDataList'>
             <div className='internationalOrganization'>
-                <div className='internationalOrganization__title'>
+                <div className='table__title'>
                     <p>
                         Являетесь ли вы иностранным публичным должностным лицом (ИПДЛ), должностным лицом публичной
                         международной организации (МПДЛ) или российским публичным должностным лицом (РПДЛ) (пункт 1
@@ -27,7 +27,7 @@ const InternationalOrganization = () => {
                 </div>
                 <div className='choiceOfficial'>
                     {
-                        editButton === false ? <h4>Нет</h4> : <ChoiceOfficial setEditButton={setEditButton}/>
+                        editButton === false ? <h4 style={{color:'#1fc31f'}}>Нет</h4> : <ChoiceOfficial setEditButton={setEditButton}/>
                     }
 
                 </div>

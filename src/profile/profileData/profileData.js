@@ -5,6 +5,8 @@ import PassportData from "./passportData";
 import UserData from "./userData";
 import InternationalOrganization from "./internationalOrganization/internationalOrganization";
 import RelativesYour from "./relativesYour/relativesYour";
+import BeneficialOwners from "./beneficialOwners/beneficialOwners";
+import Beneficial from "./beneficiaries/beneficiaries";
 
 
 const ProfileData = () => {
@@ -17,6 +19,8 @@ const ProfileData = () => {
                 <PassportData/>
                 <InternationalOrganization/>
                 <RelativesYour/>
+                <BeneficialOwners/>
+                <Beneficial/>
             </div>
         </div>
     )

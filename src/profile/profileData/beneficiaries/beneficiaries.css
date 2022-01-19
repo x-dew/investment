@@ -1,0 +1,9 @@
+
+.legalForm{
+    margin-bottom: 20px;
+}
+
+.tableInput__textarea{
+    min-height: 50px;
+    resize: vertical;
+}

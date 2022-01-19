@@ -9,7 +9,7 @@ const RelativesYour = () => {
     return (
         <div className='userDataList'>
             <div className='relativesYour'>
-                <div className='relativesYour__title'>
+                <div className='table__title'>
                     <p>
                         Имеете ли вы супруга/супругу или близких родственников (родителей, детей, дедушку (бабушку),
                         внуков, полнородных или неполнородных братьев (сестер), усыновителей и усыновленных) со статусом
@@ -27,7 +27,7 @@ const RelativesYour = () => {
                 </div>
                 <div className='relativesYour'>
                     {
-                        editButton === false ? <h4>Нет</h4> : <RelativesInput setEditButton={setEditButton}/>
+                        editButton === false ? <h4 style={{color:'#1fc31f'}}>Нет</h4> : <RelativesInput setEditButton={setEditButton}/>
                     }
 
                 </div>
