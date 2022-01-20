@@ -90,11 +90,12 @@
     margin: 0 auto;
 }
 
-.sectionSelection li {
+.sectionSelectionMenu li {
     list-style: none;
     margin-right: 30px;
     font-size: 19px;
     font-family: cursive;
+    cursor: pointer;
 }
 
 .sectionSelection li:last-child {

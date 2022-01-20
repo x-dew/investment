@@ -15,12 +15,16 @@ const ProfileData = () => {
         <div className='profileData'>
             <h2>Анкетные данные</h2>
             <div className='userData'>
-                <UserData/>
-                <PassportData/>
-                <InternationalOrganization/>
-                <RelativesYour/>
-                <BeneficialOwners/>
-                <Beneficial/>
+                <div className='userDataTable'>
+                    <UserData/>
+                    <InternationalOrganization/>
+                    <BeneficialOwners/>
+                </div>
+                <div className='userDataTable'>
+                    <PassportData/>
+                    <RelativesYour/>
+                    <Beneficial/>
+                </div>
             </div>
         </div>
     )

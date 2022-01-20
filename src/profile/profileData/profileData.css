@@ -10,8 +10,6 @@
     display: flex;
     justify-content: space-between;
     padding: 0 15px;
-    flex-wrap: wrap;
-
 }
 
 .editButton {
@@ -30,14 +28,19 @@
 }
 
 .userDataList {
-    width: 45%;
+    width: 88%;
     background: #F4F7F8;
     border-radius: 10px;
     padding: 15px 30px;
-    height: 100%;
     margin-bottom: 25px;
 }
 
+.userDataTable{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    width: 50%;
+}
 .profileData h2 {
     text-align: end;
     padding-right: 15px;
@@ -186,9 +189,9 @@
     cursor: pointer;
 }
 
-@media screen and (max-width: 1400px) {
+@media screen and (max-width: 1475px) {
     .userDataList {
-        width: 43%;
+        width: 86%;
     }
 }
 
@@ -217,7 +220,7 @@
     }
 
     .userDataList {
-        width: 41%;
+        width: 82%;
     }
 }
 
@@ -242,6 +245,9 @@
     .editButton {
         justify-content: end;
         width: auto;
+    }
+    .userDataTable{
+        width: 100%;
     }
 }
 
