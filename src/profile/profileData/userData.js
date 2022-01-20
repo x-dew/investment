@@ -33,15 +33,17 @@ const UserData = () => {
 
     return (
         <div className='userDataList'>
-            <div className='editButton'>
-                <h3>Персональные данные</h3>
-                {
-                    editButton === false ? <button onClick={() => {
-                        setEditButton(true )
-                    }}>Редактировать
-                    </button> : ''
-                }
+            <div className='table__title'>
+                <p>Персональные данные</p>
+                <div className='editButton'>
+                    {
+                        editButton === false ? <button onClick={() => {
+                            setEditButton(true)
+                        }}>Редактировать
+                        </button> : ''
+                    }
 
+                </div>
             </div>
             <div className={editButton === false ? 'userList' : 'userList editUserData'}>
                 <div className="userDataTabs">
@@ -123,11 +125,12 @@ const UserData = () => {
                     />
                 </div>
                 {
-                    editButton === true ? <div className='officialInput__button'>
+                    editButton === true ? <div className='tableInput__button'>
                         <button className='saveButton'>Сохранить</button>
                         <button
-                            onClick={()=>setEditButton(false)}
-                            className='backButton'>Отмена</button>
+                            onClick={() => setEditButton(false)}
+                            className='backButton'>Отмена
+                        </button>
                     </div> : ''
                 }
 

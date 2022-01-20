@@ -97,6 +97,10 @@
     font-family: cursive;
 }
 
+.sectionSelection li:last-child {
+    margin-right: 5px;
+}
+
 .actionSelection {
     position: relative;
 }
@@ -188,8 +192,39 @@
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 608px) {
     .userInformation {
         display: none;
+    }
+
+    .sectionSelectionMenu {
+        padding-left: 0;
+    }
+
+    .sectionSelection li {
+        font-size: 12px !important;
+    }
+
+    .sectionSelection {
+        padding-right: 0;
+    }
+}
+
+@media screen and (max-width: 435px) {
+    .sectionSelectionMenu {
+        display: block;
+    }
+
+    .sectionSelection li {
+        font-size: 18px !important;
+        margin-bottom: 10px;
+    }
+
+    .actionSelection::after {
+        display: none;
+    }
+
+    .actionSelection {
+        color: #3264f5;
     }
 }

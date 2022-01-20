@@ -52,15 +52,17 @@ const PassportData = () => {
 
     return (
         <div className='userDataList'>
-            <div className='editButton'>
-                <h3>Паспортные данные</h3>
-                {
-                    editButton === false ? <button onClick={() => {
-                        setEditButton(true)
+            <div className='table__title'>
+                <p>Паспортные данные</p>
+                <div className='editButton'>
+                    {
+                        editButton === false ? <button onClick={() => {
+                            setEditButton(true)
 
-                    }}>Редактировать</button> : ''
-                }
+                        }}>Редактировать</button> : ''
+                    }
 
+                </div>
             </div>
             <div className={editButton === false ? 'userList' : 'userList editUserData'}>
                 <div className="userDataTabs">
@@ -124,7 +126,7 @@ const PassportData = () => {
                         value={passportUser.PassportScans}/>
                 </div>
                 {
-                    editButton === true ? <div className='officialInput__button'>
+                    editButton === true ? <div className='tableInput__button'>
                         <button className='saveButton'>Сохранить</button>
                         <button
                             onClick={() => setEditButton(false)}
