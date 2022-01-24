@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useReducer, useState} from "react";
 import './SignIn.css'
 import axios from "axios";
 import {Link} from "react-router-dom";
@@ -16,8 +16,6 @@ const SignIn = ({authorization, dispatchAuthorization, setProfile}) => {
         })
     }
 
-
-
     const authorizationDate = () => {
         axios.post('https://api.investonline.su/api/v1/clients/web/login', {
             email: authorization.email,
@@ -26,29 +24,11 @@ const SignIn = ({authorization, dispatchAuthorization, setProfile}) => {
             localStorage.setItem('access_token', resp.data.access_token)
             localStorage.setItem('expires_in', resp.data.expires_in)
             localStorage.setItem('refresh_token', resp.data.refresh_token)
-            singProfile()
         }).catch((error) => {
             setProfile('/login')
             console.log(error)
         })
     }
-
-    const singProfile = () => {
-        axios.get('https://api.investonline.su/api/v1/user/profile', {
-            include: 'roles,profiles,status',
-            headers: {
-                accept: 'application/x.incrowd.v1+json',
-                authorization: `Bearer ${localStorage.getItem('access_token')}`
-            }
-        }).then((resp) => {
-            localStorage.setItem('name', resp.data.user.data.fio)
-            localStorage.setItem('email', resp.data.user.data.email)
-            console.log(resp)
-        }).catch((error) => {
-            console.log(error)
-        })
-    }
-
 
     return (
         <AuthWrap>

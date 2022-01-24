@@ -1,17 +1,38 @@
-import React, {useReducer, useState} from "react";
+import React, {useEffect, useReducer, useState} from "react";
 import './profile.css'
 import ProfileData from "./profileData/profileData";
 import {listMenu, reduce} from "./reducerProfile";
+import axios from "axios";
 
 
 const Profile = ({setProfile}) => {
+
+    const [data, setData] = useState({})
+    console.log(data)
+    useEffect(() => {
+        axios.get('https://api.investonline.su/api/v1/user/profile', {
+            headers: {
+                accept: 'application/x.incrowd.v1+json',
+                authorization: `Bearer ${localStorage.getItem('access_token')}`
+            },
+            params: {
+                include: 'roles,profiles,status',
+            }
+        }).then((resp) => {
+            setData(resp.data.user.data)
+        }).catch((error) => {
+            console.log(error)
+        })
+    }, [])
+
 
     const [menu, dispatchMenu] = useReducer(reduce, listMenu)
     const menuData = Object.values(menu)
     const [actionSelection, setActionSelection] = useState(1)
 
+
     {
-        if (!localStorage.getItem('access_token')) setProfile('login')
+        if (localStorage.getItem('access_token') === null) setProfile("/login")
     }
 
     return (
@@ -62,7 +83,7 @@ const Profile = ({setProfile}) => {
                                         <path
                                             d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                                     </svg>
-                                    <p>{localStorage.getItem('name')}</p>
+                                    <p>{data.fio}</p>
                                 </div>
                                 <div className='userEmail userFlex'>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#FFF"
@@ -70,7 +91,7 @@ const Profile = ({setProfile}) => {
                                         <path
                                             d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
                                     </svg>
-                                    <p>{localStorage.getItem('email')}</p>
+                                    <p>{data.email}</p>
                                 </div>
                             </div>
                         </div>
@@ -80,24 +101,19 @@ const Profile = ({setProfile}) => {
             <div className='sectionSelection'>
                 <ul className='sectionSelectionMenu'>
                     <li
-                        onClick={()=>setActionSelection(1)}
+                        onClick={() => setActionSelection(1)}
                         className={actionSelection === 1 ? 'actionSelection' : ''}
                     >Данные профиля
                     </li>
                     <li
-                        onClick={()=>setActionSelection(2)}
+                        onClick={() => setActionSelection(2)}
                         className={actionSelection === 2 ? 'actionSelection' : ''}
                     >Банковские реквизиты
-                    </li>
-                    <li
-                        onClick={()=>setActionSelection(3)}
-                        className={actionSelection === 3 ? 'actionSelection' : ''}
-                    >Виртуальный счет
                     </li>
                 </ul>
             </div>
             <div className='profileTable'>
-                <ProfileData/>
+                <ProfileData data={data}/>
             </div>
         </div>
     )

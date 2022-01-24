@@ -1,7 +1,7 @@
 export const dataProfile = {
-    fio: 'Иванов Иван Иванович',
+    fio: '',
     dataBorn: '',
-    phone: '+7 (999) 969 59 06',
+    phone: '',
     inn: '',
     livesBorn: '',
     address: '',
@@ -15,9 +15,6 @@ export const passportData = {
     PassportScans: '',
 }
 
-export const choiceOfficial ={
-    official:'Нет'
-}
 
 export const listMenu = {
     project:'Лента проектов',
@@ -35,3 +32,4 @@ export const reduce = (state, action) => {
         [action.payload.name]: action.payload.value
     }
 }
+

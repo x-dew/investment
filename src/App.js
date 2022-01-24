@@ -21,7 +21,6 @@ function App() {
     const [color, setColor] = useState(0)
     const [profile, setProfile] = useState('/')
 
-
     return (
         <div className="App" style={color === 0 ? {background: lightColor} : {background: darkColor}}>
             <Routes>
@@ -32,6 +31,7 @@ function App() {
                                authorization={authorization}
                                dispatchAuthorization={dispatchAuthorization}
                            />
+
                        }
                 />
                 <Route path="register"
@@ -51,7 +51,7 @@ function App() {
                        }
                 />
                 <Route
-                    path={profile}
+                    path="/"
                     element={
                         <Profile
                             setProfile={setProfile}

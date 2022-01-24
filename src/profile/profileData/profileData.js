@@ -1,22 +1,25 @@
-import React, {useReducer, useState} from "react";
+import React, {useEffect, useReducer, useState} from "react";
 import './profileData.css'
-import {reduce, dataProfile} from "../reducerProfile";
 import PassportData from "./passportData";
 import UserData from "./userData";
 import InternationalOrganization from "./internationalOrganization/internationalOrganization";
 import RelativesYour from "./relativesYour/relativesYour";
 import BeneficialOwners from "./beneficialOwners/beneficialOwners";
 import Beneficial from "./beneficiaries/beneficiaries";
+import axios from "axios";
 
 
-const ProfileData = () => {
+const ProfileData = ({data}) => {
+
+
+
 
     return (
         <div className='profileData'>
             <h2>Анкетные данные</h2>
             <div className='userData'>
                 <div className='userDataTable'>
-                    <UserData/>
+                    <UserData data={data}/>
                     <InternationalOrganization/>
                     <BeneficialOwners/>
                 </div>

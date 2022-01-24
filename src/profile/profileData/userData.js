@@ -1,7 +1,7 @@
 import React, {useReducer, useState} from "react";
 import {dataProfile, reduce} from "../reducerProfile";
 
-const UserData = () => {
+const UserData = ({data}) => {
 
     const [userData, dispatchData] = useReducer(reduce, dataProfile)
     const [editButton, setEditButton] = useState(false)
