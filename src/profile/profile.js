@@ -1,13 +1,17 @@
 import React, {useEffect, useReducer, useState} from "react";
 import './profile.css'
 import ProfileData from "./profileData/profileData";
-import {listMenu, reduce} from "./reducerProfile";
+import {listMenu, dataProfile, reduce} from "./reducerProfile";
 import axios from "axios";
 
 
 const Profile = ({setProfile}) => {
 
+
+    const [userData, dispatchData] = useReducer(reduce, dataProfile)
     const [data, setData] = useState({})
+    let copy = Object.assign({}, data);
+    console.log(copy,'copy')
     console.log(data)
     useEffect(() => {
         axios.get('https://api.investonline.su/api/v1/user/profile', {
@@ -20,6 +24,18 @@ const Profile = ({setProfile}) => {
             }
         }).then((resp) => {
             setData(resp.data.user.data)
+            dispatchData({
+                payload:{
+                    name:'fio',
+                    value:resp.data.user.data.fio
+                }
+            })
+            dispatchData({
+                payload:{
+                    name:'phone',
+                    value:resp.data.user.data.phone
+                }
+            })
         }).catch((error) => {
             console.log(error)
         })
@@ -33,6 +49,7 @@ const Profile = ({setProfile}) => {
 
     {
         if (localStorage.getItem('access_token') === null) setProfile("/login")
+
     }
 
     return (
@@ -113,7 +130,11 @@ const Profile = ({setProfile}) => {
                 </ul>
             </div>
             <div className='profileTable'>
-                <ProfileData data={data}/>
+                <ProfileData
+                    data={data}
+                    userData={userData}
+                    dispatchData={dispatchData}
+                />
             </div>
         </div>
     )

@@ -33,3 +33,10 @@ export const reduce = (state, action) => {
     }
 }
 
+export const reducer = (state, action) => {
+    return {
+        ...state,
+        [action.payload.name]: action.payload.value
+    }
+}
+

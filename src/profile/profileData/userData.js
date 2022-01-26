@@ -1,11 +1,9 @@
 import React, {useReducer, useState} from "react";
 import {dataProfile, reduce} from "../reducerProfile";
 
-const UserData = ({data}) => {
+const UserData = ({data,userData,dispatchData}) => {
 
-    const [userData, dispatchData] = useReducer(reduce, dataProfile)
     const [editButton, setEditButton] = useState(false)
-
     {
         if (editButton === false) {
             for (let key in userData) {

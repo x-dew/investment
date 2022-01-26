@@ -9,9 +9,7 @@ import Beneficial from "./beneficiaries/beneficiaries";
 import axios from "axios";
 
 
-const ProfileData = ({data}) => {
-
-
+const ProfileData = ({data, dispatchData, userData}) => {
 
 
     return (
@@ -19,7 +17,11 @@ const ProfileData = ({data}) => {
             <h2>Анкетные данные</h2>
             <div className='userData'>
                 <div className='userDataTable'>
-                    <UserData data={data}/>
+                    <UserData
+                        data={data}
+                        userData={userData}
+                        dispatchData={dispatchData}
+                    />
                     <InternationalOrganization/>
                     <BeneficialOwners/>
                 </div>
