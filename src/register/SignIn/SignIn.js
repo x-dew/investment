@@ -4,8 +4,9 @@ import axios from "axios";
 import {Link} from "react-router-dom";
 import AuthWrap from "../../components/wrappers/AuthWrap";
 
-const SignIn = ({authorization, dispatchAuthorization, setProfile}) => {
+const SignIn = ({authorization, dispatchAuthorization, setProfile, profile}) => {
 
+    const [errorBlock, setErrorBlock] = useState(0)
 
     const register = (e) => {
         dispatchAuthorization({
@@ -24,8 +25,9 @@ const SignIn = ({authorization, dispatchAuthorization, setProfile}) => {
             localStorage.setItem('access_token', resp.data.access_token)
             localStorage.setItem('expires_in', resp.data.expires_in)
             localStorage.setItem('refresh_token', resp.data.refresh_token)
+            setProfile('/')
         }).catch((error) => {
-            setProfile('/login')
+            setErrorBlock(1)
             console.log(error)
         })
     }
@@ -42,6 +44,7 @@ const SignIn = ({authorization, dispatchAuthorization, setProfile}) => {
                                 register(e)
                             }}
                             name='email'
+                            value={authorization.email}
                             type="email"
                             className="signInput"
                             placeholder="name@yourdomain.com"/>
@@ -56,20 +59,27 @@ const SignIn = ({authorization, dispatchAuthorization, setProfile}) => {
                             }}
                             name='password'
                             type="password"
+                            value={authorization.password}
                             className="signInput"
                             placeholder="Enter your password"/>
                     </div>
                 </div>
-
-                <Link to={'/'}>
-                    <button
-                        onClick={() => {
+                {errorBlock === 1 ? <div className='errorBlock'>
+                    <p>Поля не заполненны, или неправельно введенно пароль или логин</p>
+                </div> : ''}
+                <button
+                    onClick={() => {
+                        if(authorization.email === '' || authorization.password === ''){
+                            setErrorBlock(1)
+                            setProfile('')
+                        }else {
                             authorizationDate()
-                        }}
-                        className="signButton">
-                        Sign In
-                    </button>
-                </Link>
+                        }
+
+                    }}
+                    className="signButton">
+                    <Link to={profile}>Sign In </Link>
+                </button>
                 <p className="text-center">
                     <small className="registerСhoose">
                         Don't have an account yet? <Link to="/register">Sign up</Link>.

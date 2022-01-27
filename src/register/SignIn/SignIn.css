@@ -37,17 +37,22 @@
     margin-top: 10px;
 }
 
-.signButton {
 
-}
 .signButton a{
-
     color: #fff;
     background: #3264f5;
     border-radius: 5px;
     border: 1px solid #3264f5;
     width: 100%;
     padding: 15px;
-    font-size: 17px;    text-decoration: none;
+    font-size: 17px;
+    text-decoration: none;
+}
+
+.errorBlock{
+    color:red;
+    font-weight: bold;
+    font-family: sans-serif;
+    text-decoration: underline;
 }
 

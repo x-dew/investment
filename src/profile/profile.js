@@ -5,14 +5,11 @@ import {listMenu, dataProfile, reduce} from "./reducerProfile";
 import axios from "axios";
 
 
-const Profile = ({setProfile}) => {
-
+const Profile = ({setProfile, signUpReduce}) => {
 
     const [userData, dispatchData] = useReducer(reduce, dataProfile)
     const [data, setData] = useState({})
-    let copy = Object.assign({}, data);
-    console.log(copy,'copy')
-    console.log(data)
+
     useEffect(() => {
         axios.get('https://api.investonline.su/api/v1/user/profile', {
             headers: {
@@ -25,15 +22,15 @@ const Profile = ({setProfile}) => {
         }).then((resp) => {
             setData(resp.data.user.data)
             dispatchData({
-                payload:{
-                    name:'fio',
-                    value:resp.data.user.data.fio
+                payload: {
+                    name: 'fio',
+                    value: resp.data.user.data.fio
                 }
             })
             dispatchData({
-                payload:{
-                    name:'phone',
-                    value:resp.data.user.data.phone
+                payload: {
+                    name: 'phone',
+                    value: resp.data.user.data.phone
                 }
             })
         }).catch((error) => {
@@ -47,10 +44,7 @@ const Profile = ({setProfile}) => {
     const [actionSelection, setActionSelection] = useState(1)
 
 
-    {
-        if (localStorage.getItem('access_token') === null) setProfile("/login")
 
-    }
 
     return (
         <div className='profile'>
