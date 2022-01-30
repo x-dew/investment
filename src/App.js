@@ -1,7 +1,6 @@
 import './App.css';
 import Register from "./register/register";
 import {Routes, Route, Link, Switch, BrowserRouter} from "react-router-dom";
-import {useHistory} from "react-router-dom";
 import {useState, useReducer, useEffect,} from "react";
 import React from "react";
 import Profile from "./profile/profile";
@@ -22,14 +21,14 @@ function App() {
     const [color, setColor] = useState(0)
     const [profile, setProfile] = useState('')
 
-    let history = useHistory();
+    // let history = useHistory();
 
-    {
-        if (localStorage.getItem('access_token') === null) {
-            history.push("/login")
-            console.log('history')
-        }
-    }
+    // {
+    //     if (localStorage.getItem('access_token') === null) {
+    //         history.push("/login")
+    //         console.log('history')
+    //     }
+    // }
 
     return (
         <div className="App" style={color === 0 ? {background: lightColor} : {background: darkColor}}>

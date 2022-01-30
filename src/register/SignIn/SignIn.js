@@ -46,7 +46,7 @@ const SignIn = ({authorization, dispatchAuthorization, setProfile, profile}) => 
                             name='email'
                             value={authorization.email}
                             type="email"
-                            className="signInput"
+                            className={errorBlock === 1 ? 'signInput errorInput' : 'signInput'}
                             placeholder="name@yourdomain.com"/>
                     </div>
                 </div>
@@ -60,7 +60,7 @@ const SignIn = ({authorization, dispatchAuthorization, setProfile, profile}) => 
                             name='password'
                             type="password"
                             value={authorization.password}
-                            className="signInput"
+                            className={errorBlock === 1 ? 'signInput errorInput' : 'signInput'}
                             placeholder="Enter your password"/>
                     </div>
                 </div>
@@ -78,12 +78,12 @@ const SignIn = ({authorization, dispatchAuthorization, setProfile, profile}) => 
 
                     }}
                     className="signButton">
-                    <Link to={profile}>Sign In </Link>
+                    <Link disabled to={profile}>Sign In </Link>
                 </button>
                 <p className="text-center">
-                    <small className="registerСhoose">
-                        Don't have an account yet? <Link to="/register">Sign up</Link>.
-                    </small>
+                    <span disabled  className="registerСhoose">
+                        Don't have an account yet? <Link className='isDisabled' disabled='disabled' to="/register">Sign up</Link>.
+                    </span>
                 </p>
             </div>
         </AuthWrap>

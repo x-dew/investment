@@ -56,3 +56,16 @@
     text-decoration: underline;
 }
 
+.errorInput{
+    border-color:red!important;
+    box-shadow: -2px 0px 0px 0px red!important;
+
+}
+
+.isDisabled {
+    color: currentColor;
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: none;
+}
+
