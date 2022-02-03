@@ -1,6 +1,6 @@
 import './App.css';
 import Register from "./register/register";
-import {Routes, Route, Link, Switch, BrowserRouter} from "react-router-dom";
+import {Routes, Route, Link, Switch, BrowserRouter,useHistory} from "react-router-dom";
 import {useState, useReducer, useEffect,} from "react";
 import React from "react";
 import Profile from "./profile/profile";
@@ -22,7 +22,7 @@ function App() {
     const [profile, setProfile] = useState('')
 
     // let history = useHistory();
-
+    //
     // {
     //     if (localStorage.getItem('access_token') === null) {
     //         history.push("/login")

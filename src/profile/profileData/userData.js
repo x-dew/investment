@@ -1,9 +1,11 @@
 import React, {useReducer, useState} from "react";
 import {dataProfile, reduce} from "../reducerProfile";
+import axios from "axios";
 
-const UserData = ({data,userData,dispatchData}) => {
+const UserData = ({data, userData, dispatchData}) => {
 
     const [editButton, setEditButton] = useState(false)
+
     {
         if (editButton === false) {
             for (let key in userData) {
@@ -26,6 +28,22 @@ const UserData = ({data,userData,dispatchData}) => {
                 name: e.target.name,
                 value: e.target.value
             }
+        })
+    }
+
+    const personal = () => {
+        axios.put("https://api.investonline.su/api/v1/profiles/outer/personal",
+            {
+                headers: {
+                    accept: 'application/x.incrowd.v1+json',
+                    authorization: `Bearer ${localStorage.getItem('access_token')}`
+                },
+                userData
+            }
+        ).then((resp) => {
+            console.log(resp)
+        }).catch((error) => {
+            console.log(error)
         })
     }
 
@@ -62,6 +80,10 @@ const UserData = ({data,userData,dispatchData}) => {
                     <input
                         style={userData.dataBorn === 'Заполните поле' ? {color: 'red'} : {color: 'black'}}
                         onChange={(e) => {
+                            console.log(e.target.value)
+                            if(e.target.value === /^[a-zA-Z]?\d+$/){
+                                console.log('ddd')
+                            }
                             profileFun(e)
                         }}
                         name='dataBorn'
@@ -124,14 +146,13 @@ const UserData = ({data,userData,dispatchData}) => {
                 </div>
                 {
                     editButton === true ? <div className='tableInput__button'>
-                        <button className='saveButton'>Сохранить</button>
+                        <button onClick={() => personal()} className='saveButton'>Сохранить</button>
                         <button
                             onClick={() => setEditButton(false)}
                             className='backButton'>Отмена
                         </button>
                     </div> : ''
                 }
-
             </div>
         </div>
     )

@@ -75,13 +75,13 @@ const SignIn = ({authorization, dispatchAuthorization, setProfile, profile}) => 
                         }else {
                             authorizationDate()
                         }
-
                     }}
                     className="signButton">
-                    <Link disabled to={profile}>Sign In </Link>
+                    <Link
+                        to={profile}>Sign In </Link>
                 </button>
                 <p className="text-center">
-                    <span disabled  className="registerСhoose">
+                    <span   className="registerСhoose">
                         Don't have an account yet? <Link className='isDisabled' disabled='disabled' to="/register">Sign up</Link>.
                     </span>
                 </p>
