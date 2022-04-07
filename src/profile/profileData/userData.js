@@ -75,6 +75,7 @@ const UserData = ({data, userData, dispatchData}) => {
                         value={userData.fio}
                     />
                 </div>
+
                 <div className="userDataTabs">
                     <label className="userDataTabsLabel">Дата рождения:</label>
                     <input
